@@ -245,6 +245,21 @@
             margin-bottom: 10px;
         }
 
+        /* Slide 1 Grid Layout */
+        .welcome-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .welcome-img {
+            width: 100%;
+            border-radius: 18px;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
         /* Formula Box / Sentence Patterns */
         .pattern-box {
             background: linear-gradient(135deg, rgba(236, 64, 122, 0.08) 0%, rgba(244, 143, 177, 0.15) 100%);
@@ -353,6 +368,7 @@
         .comp-item {
             padding: 10px;
             border-radius: 12px;
+            font-weight: 700;
         }
 
         .comp-item.wrong {
@@ -365,6 +381,20 @@
             background: #E6F9EE;
             color: #008537;
             border: 1px solid #B3E8C7;
+        }
+
+        .grammar-note {
+            background: #FFF8E1;
+            border: 1px solid #FFE082;
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin: 12px 0;
+            font-size: 0.88rem;
+            color: #5D4037;
+        }
+
+        .grammar-note strong {
+            color: #E65100;
         }
 
         /* ==========================================
@@ -478,8 +508,6 @@
             padding: 12px;
         }
 
-        .hidden { display: none !important; }
-
         /* ==========================================
            6. RESPONSIVE MEDIA QUERIES (DESKTOP/SLIDE)
            ========================================== */
@@ -507,8 +535,15 @@
                 padding: 32px 28px;
             }
 
+            .welcome-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 24px;
+            }
+
             .flashcard-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 12px;
             }
 
@@ -562,55 +597,84 @@
         <!-- MAIN CONTENT SLIDES -->
         <main id="mainContent">
 
-            <!-- SLIDE 0: WELCOME -->
+            <!-- SLIDE 0: WELCOME (Com Imagem no Canto Direito) -->
             <section class="chapter active" id="chap-0">
-                <div class="card" style="text-align: center;">
-                    <span class="badge">👋 Presentation Start</span>
-                    <h1>Hello & Welcome!</h1>
-                    <p style="margin-top: 10px; font-size: 1.1rem;">Welcome to today's <strong>English Conversation Club</strong> presentation.</p>
-                    <p>Today we will explore key topics for everyday conversation while practicing speaking together!</p>
-                    
-                    <div class="speaker-box" style="text-align: left; margin-top: 15px;">
-                        <strong>🎙️ Speaker Tip:</strong>
-                        Use the <strong>arrow keys (← →)</strong> on your keyboard or the <strong>dropdown menu above</strong> to pass slides smoothly!
-                    </div>
+                <div class="card">
+                    <div class="welcome-grid">
+                        <div class="welcome-text">
+                            <span class="badge">👋 Presentation Start</span>
+                            <h1>Hello & Welcome!</h1>
+                            <p style="margin-top: 10px; font-size: 1.05rem;">
+                                Welcome to today's <strong>English Conversation Club</strong> presentation!
+                            </p>
+                            <p>Aprendendo juntas, um passo de cada vez. Small steps, big progress!</p>
+                            
+                            <div class="speaker-box" style="margin-top: 15px;">
+                                <strong>🎙️ Speaker Tip:</strong>
+                                Use as <strong>setas do teclado (← →)</strong> ou o <strong>menu acima</strong> para navegar entre os capítulos!
+                            </div>
 
-                    <button class="btn btn-primary" onclick="nextChapter()" style="margin-top: 15px;">
-                        Start Presentation 🚀
-                    </button>
+                            <button class="btn btn-primary" onclick="nextChapter()" style="margin-top: 15px;">
+                                Start Presentation 🚀
+                            </button>
+                        </div>
+                        <div class="welcome-image-container">
+                            <img src="welcome-banner.png" alt="Clube de Conversação em Inglês" class="welcome-img">
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- SLIDE 1: ABOUT ME -->
+            <!-- SLIDE 1: ABOUT ME (Atualizado com Idade, Pitfalls e Destaques) -->
             <section class="chapter" id="chap-1">
                 <div class="card">
                     <span class="badge">🌎 Chapter 1</span>
                     <h2>About Me</h2>
-                    <p>Hello! My name is <strong>Sara Reis</strong>. I live in Blumenau.</p>
+                    <p>Hello! My name is <strong>Sara Reis</strong>. I am <strong>24 years old</strong> and I live in Blumenau, Brazil.</p>
 
                     <!-- Useful Formula Pattern -->
                     <div class="pattern-box">
                         <header>💡 Useful Pattern (Introductions)</header>
-                        <div>"My name is <strong>[Name]</strong> and I work as <strong>[Role]</strong>."</div>
+                        <div>"My name is <strong>[Name]</strong>, I am <strong>[Age]</strong> years old, and I work as <strong>[Role]</strong>."</div>
                         <div class="pattern-formula">I am from [City], [State].</div>
                     </div>
 
-                    <p style="margin-top: 12px; font-weight: 700;">Click cards to reveal translations:</p>
+                    <!-- Common Pitfalls (Grammar Correction) -->
+                    <h3 style="margin-top: 15px;">⚠️ Common Pitfall: Stating Your Age</h3>
+                    <div class="comparison-box">
+                        <div class="comp-item wrong">❌ I have 24 years old.</div>
+                        <div class="comp-item right">✅ I am 24 years old.</div>
+                    </div>
+
+                    <!-- Grammar Note: Age vs Years -->
+                    <div class="grammar-note">
+                        <strong>📌 Dica Importante (Age vs. Years):</strong><br>
+                        Em inglês, a palavra <strong>Age</strong> se refere à <em>idade</em> (conceito), enquanto <strong>Years</strong> refere-se aos <em>anos</em> de vida decorridos. Para dizer a sua idade, usamos o verbo <strong>TO BE (I am)</strong> e não o verbo ter (I have)!
+                    </div>
+
+                    <p style="margin-top: 16px; font-weight: 700;">Vocabulary Flashcards (Click to see meaning):</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">📖 Travel</div>
-                            <div class="back">Viajar</div>
+                            <div class="front">🏠 Live</div>
+                            <div class="back">Viver / Morar</div>
                         </div>
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">🗺️ Explore</div>
-                            <div class="back">Explorar</div>
+                            <div class="front">🏘 City</div>
+                            <div class="back">Cidade</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🌎 Country</div>
+                            <div class="back">País</div>
                         </div>
                     </div>
 
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
-                    <h3>👉 INTERACTIVE TIME</h3>
-                    <p>What countries would you like to visit?</p>
+                    <h3>👉 YOUR TURN</h3>
+                    <p>1. How old are you?</p>
+                    <input type="text" placeholder="e.g. I am 24 years old" onchange="saveAnswer('userAge', this.value)">
+
+                    <p style="margin-top: 10px;">2. What countries would you like to visit?</p>
                     <input type="text" placeholder="e.g. Japan, Italy, Canada..." onchange="saveAnswer('targetCountries', this.value)">
                 </div>
             </section>
@@ -627,11 +691,6 @@
                         <header>💡 Sentence Pattern (Describing a City)</header>
                         <div>"My city is famous for <strong>[Noun / Activity]</strong>."</div>
                         <div class="pattern-formula">[City] is [Adjective 1] and [Adjective 2].</div>
-                    </div>
-
-                    <div class="comparison-box">
-                        <div class="comp-item wrong">❌ I have 30 years old.</div>
-                        <div class="comp-item right">✅ I am 30 years old.</div>
                     </div>
 
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
