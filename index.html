@@ -59,7 +59,6 @@
             background-attachment: fixed;
         }
 
-        /* App Layout Container */
         .app-container {
             width: 100%;
             max-width: 500px;
@@ -147,7 +146,6 @@
             gap: 4px;
         }
 
-        /* Slide Jump Select Dropdown */
         .slide-jump-select {
             width: 100%;
             padding: 8px 12px;
@@ -157,11 +155,9 @@
             color: var(--text-primary);
             font-weight: 700;
             font-size: 0.85rem;
-            margin-bottom: 0;
             cursor: pointer;
         }
 
-        /* Progress Bar */
         .progress-container {
             width: 100%;
             background: var(--btn-bg);
@@ -179,7 +175,7 @@
         }
 
         /* ==========================================
-           3. PRESENTATION DIDACTIC COMPONENTS
+           3. DIDACTIC COMPONENTS
            ========================================== */
         main {
             flex: 1;
@@ -245,7 +241,6 @@
             margin-bottom: 10px;
         }
 
-        /* Slide 1 Grid Layout */
         .welcome-grid {
             display: flex;
             flex-direction: column;
@@ -260,7 +255,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* Formula Box / Sentence Patterns */
         .pattern-box {
             background: linear-gradient(135deg, rgba(236, 64, 122, 0.08) 0%, rgba(244, 143, 177, 0.15) 100%);
             border: 2px dashed var(--primary);
@@ -284,17 +278,16 @@
         .pattern-formula {
             font-family: monospace;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--text-primary);
             background: var(--card-bg);
             padding: 8px 12px;
             border-radius: 10px;
-            display: inline-block;
-            margin-top: 4px;
+            display: block;
+            margin-top: 6px;
             border: 1px solid var(--border-color);
         }
 
-        /* Interactive Flashcards Grid */
         .flashcard-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -306,7 +299,7 @@
             background: var(--btn-bg);
             border: 2px solid var(--border-color);
             border-radius: 16px;
-            padding: 14px 10px;
+            padding: 12px 8px;
             text-align: center;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -315,18 +308,18 @@
 
         .flashcard:hover {
             border-color: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .flashcard .front {
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-primary);
         }
 
         .flashcard .back {
             display: none;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--primary);
             font-weight: 700;
             margin-top: 4px;
@@ -341,7 +334,6 @@
             display: block;
         }
 
-        /* Speaker vs Interactive Box */
         .speaker-box {
             background: rgba(0, 200, 83, 0.08);
             border-left: 4px solid var(--success);
@@ -397,8 +389,16 @@
             color: #E65100;
         }
 
+        .section-box {
+            background: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px;
+            margin: 14px 0;
+        }
+
         /* ==========================================
-           4. FORM CONTROLS & INTERACTIVE ELEMENTS
+           4. CONTROLS & INTERACTIVE ELEMENTS
            ========================================== */
         .btn {
             width: 100%;
@@ -509,7 +509,7 @@
         }
 
         /* ==========================================
-           6. RESPONSIVE MEDIA QUERIES (DESKTOP/SLIDE)
+           6. RESPONSIVE DESKTOP LAYOUT
            ========================================== */
         @media (min-width: 768px) {
             .app-container {
@@ -574,16 +574,15 @@
                 </div>
             </div>
 
-            <!-- SLIDE JUMP SELECTOR FOR PRESENTATION -->
             <select class="slide-jump-select" id="slideJumpSelect" onchange="jumpToChapter(this.value)">
                 <option value="0">Slide 1: Welcome & Intro</option>
                 <option value="1">Slide 2: Chapter 1 — About Me</option>
                 <option value="2">Slide 3: Chapter 2 — My City</option>
                 <option value="3">Slide 4: Chapter 3 — My Family</option>
                 <option value="4">Slide 5: Chapter 4 — Work & Education</option>
-                <option value="5">Slide 6: Chapter 5 — Hobbies</option>
-                <option value="6">Slide 7: Chapter 6 — Skills</option>
-                <option value="7">Slide 8: Chapter 7 — Goals</option>
+                <option value="5">Slide 6: Chapter 5 — Hobbies & Free Time</option>
+                <option value="6">Slide 7: Chapter 6 — Skills & Strengths</option>
+                <option value="7">Slide 8: Chapter 7 — Goals & Future</option>
                 <option value="8">Slide 9: Chapter 8 — Fun Facts</option>
                 <option value="9">Slide 10: Chapter 9 — Let's Talk!</option>
                 <option value="10">Slide 11: Chapter 10 — Thank You</option>
@@ -594,10 +593,10 @@
             </div>
         </header>
 
-        <!-- MAIN CONTENT SLIDES -->
+        <!-- MAIN CONTENT -->
         <main id="mainContent">
 
-            <!-- SLIDE 0: WELCOME (Com Imagem no Canto Direito) -->
+            <!-- SLIDE 1: WELCOME -->
             <section class="chapter active" id="chap-0">
                 <div class="card">
                     <div class="welcome-grid">
@@ -625,46 +624,59 @@
                 </div>
             </section>
 
-            <!-- SLIDE 1: ABOUT ME (Atualizado com Idade, Pitfalls e Destaques) -->
+            <!-- SLIDE 2: CHAPTER 1 — ABOUT ME -->
             <section class="chapter" id="chap-1">
                 <div class="card">
                     <span class="badge">🌎 Chapter 1</span>
                     <h2>About Me</h2>
                     <p>Hello! My name is <strong>Sara Reis</strong>. I am <strong>24 years old</strong> and I live in Blumenau, Brazil.</p>
 
-                    <!-- Useful Formula Pattern -->
                     <div class="pattern-box">
                         <header>💡 Useful Pattern (Introductions)</header>
                         <div>"My name is <strong>[Name]</strong>, I am <strong>[Age]</strong> years old, and I work as <strong>[Role]</strong>."</div>
                         <div class="pattern-formula">I am from [City], [State].</div>
                     </div>
 
-                    <!-- Common Pitfalls (Grammar Correction) -->
-                    <h3 style="margin-top: 15px;">⚠️ Common Pitfall: Stating Your Age</h3>
+                    <h3>⚠️ Common Pitfall: Stating Your Age</h3>
                     <div class="comparison-box">
                         <div class="comp-item wrong">❌ I have 24 years old.</div>
                         <div class="comp-item right">✅ I am 24 years old.</div>
                     </div>
 
-                    <!-- Grammar Note: Age vs Years -->
                     <div class="grammar-note">
                         <strong>📌 Dica Importante (Age vs. Years):</strong><br>
-                        Em inglês, a palavra <strong>Age</strong> se refere à <em>idade</em> (conceito), enquanto <strong>Years</strong> refere-se aos <em>anos</em> de vida decorridos. Para dizer a sua idade, usamos o verbo <strong>TO BE (I am)</strong> e não o verbo ter (I have)!
+                        Em inglês, a palavra <strong>Age</strong> se refere à <em>idade</em> (conceito), enquanto <strong>Years</strong> refere-se aos <em>anos</em> de vida decorridos. Para dizer a sua idade, usamos o verbo <strong>TO BE (I am)</strong>!
                     </div>
 
-                    <p style="margin-top: 16px; font-weight: 700;">Vocabulary Flashcards (Click to see meaning):</p>
+                    <p style="margin-top: 16px; font-weight: 700;">Vocabulary Flashcards:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">🏠 Live</div>
                             <div class="back">Viver / Morar</div>
                         </div>
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">🏘 City</div>
+                            <div class="front">🏘️ City</div>
                             <div class="back">Cidade</div>
                         </div>
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">🌎 Country</div>
                             <div class="back">País</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">📖 Travel</div>
+                            <div class="back">Viajar</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🗺️ Explore</div>
+                            <div class="back">Explorar</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🎓 Student</div>
+                            <div class="back">Estudante</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💼 Career</div>
+                            <div class="back">Carreira</div>
                         </div>
                     </div>
 
@@ -679,35 +691,58 @@
                 </div>
             </section>
 
-            <!-- SLIDE 2: MY CITY -->
+            <!-- SLIDE 3: CHAPTER 2 — MY CITY (BLUMENAU) -->
             <section class="chapter" id="chap-2">
                 <div class="card">
                     <span class="badge">🏡 Chapter 2</span>
                     <h2>My City — Blumenau</h2>
                     
-                    <p>I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest, German heritage, and high quality of life.</p>
+                    <p>I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest, German architecture, beautiful nature, and high quality of life.</p>
 
                     <div class="pattern-box">
-                        <header>💡 Sentence Pattern (Describing a City)</header>
+                        <header>💡 Sentence Patterns (Describing a City)</header>
                         <div>"My city is famous for <strong>[Noun / Activity]</strong>."</div>
                         <div class="pattern-formula">[City] is [Adjective 1] and [Adjective 2].</div>
                     </div>
 
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                    <p style="margin-top: 16px; font-weight: 700;">City Vocabulary Flashcards:</p>
+                    <div class="flashcard-grid">
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🍻 Heritage / Culture</div>
+                            <div class="back">Herança / Cultura</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🌲 Nature & Parks</div>
+                            <div class="back">Natureza e Parques</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🏰 Architecture</div>
+                            <div class="back">Arquitetura</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🏙️ Downtown</div>
+                            <div class="back">Centro da cidade</div>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>Describe your city using two adjectives:</p>
-                    <input type="text" placeholder="e.g. Beautiful, quiet, vibrant" onchange="saveAnswer('cityAdjectives', this.value)">
+                    <p>1. Describe your city using two adjectives:</p>
+                    <input type="text" placeholder="e.g. Beautiful and vibrant" onchange="saveAnswer('cityAdjectives', this.value)">
+
+                    <p style="margin-top: 10px;">2. What is your favorite place in your city?</p>
+                    <input type="text" placeholder="e.g. The central park, river promenade..." onchange="saveAnswer('favCityPlace', this.value)">
                 </div>
             </section>
 
-            <!-- SLIDE 3: MY FAMILY -->
+            <!-- SLIDE 4: CHAPTER 3 — MY FAMILY -->
             <section class="chapter" id="chap-3">
                 <div class="card">
                     <span class="badge">👨‍👩‍👧 Chapter 3</span>
                     <h2>My Family</h2>
 
-                    <p style="font-weight: 700;">Vocabulary Flashcards (Click to see meaning):</p>
+                    <p style="font-weight: 700;">Family Vocabulary Flashcards:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">👨‍👩‍👦 Parents</div>
@@ -725,11 +760,58 @@
                             <div class="front">💍 Spouse</div>
                             <div class="back">Cônjuge</div>
                         </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👦 Brother</div>
+                            <div class="back">Irmão</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👧 Sister</div>
+                            <div class="back">Irmã</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👨 Husband</div>
+                            <div class="back">Marido</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👩 Wife</div>
+                            <div class="back">Esposa</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👧 Daughter</div>
+                            <div class="back">Filha</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👦 Son</div>
+                            <div class="back">Filho</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👶 Child / Children</div>
+                            <div class="back">Criança / Crianças</div>
+                        </div>
                     </div>
 
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                    <!-- SEÇÃO ESPECIAL - ENGAGED -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">💍 Getting Married (Engaged)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💍 Fiancé / Fiancée</div>
+                                <div class="back">Noivo / Noiva (Noivado)</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👰 Bride</div>
+                                <div class="back">Noiva (no casamento)</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🤵 Groom</div>
+                                <div class="back">Noivo (no casamento)</div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <h3>💍 Relationship Status</h3>
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 Relationship Status</h3>
                     <div class="option-grid">
                         <div class="check-card single-select" onclick="selectStatus(this, 'Single')">👤 Single</div>
                         <div class="check-card single-select" onclick="selectStatus(this, 'In a Relationship')">💖 In a Relationship</div>
@@ -739,20 +821,21 @@
                 </div>
             </section>
 
-            <!-- SLIDE 4: WORK & EDUCATION -->
+            <!-- SLIDE 5: CHAPTER 4 — WORK & EDUCATION -->
             <section class="chapter" id="chap-4">
                 <div class="card">
                     <span class="badge">💼 Chapter 4</span>
                     <h2>Work & Education</h2>
 
-                    <p>I work in administration and procurement, managing suppliers and processes daily.</p>
+                    <p>Focusing on daily routines, procurement/purchasing, administration, and studies.</p>
 
                     <div class="pattern-box">
-                        <header>💡 Formula Pattern (Work)</header>
+                        <header>💡 Formula Patterns</header>
                         <div>"I am responsible for <strong>[Verb + ING]</strong>..."</div>
-                        <div class="pattern-formula">I work at [Company] as a [Job Title].</div>
+                        <div class="pattern-formula">I work / study at [Company / University].</div>
                     </div>
 
+                    <p style="margin-top: 16px; font-weight: 700;">Work & Study Flashcards:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">🤝 Supplier</div>
@@ -762,17 +845,29 @@
                             <div class="front">📄 Purchase Order</div>
                             <div class="back">Pedido de Compra</div>
                         </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">⏰ Deadline</div>
+                            <div class="back">Prazo final</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">📊 Management</div>
+                            <div class="back">Gestão / Gerenciamento</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">📦 Logistics</div>
+                            <div class="back">Logística</div>
+                        </div>
                     </div>
 
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>What do you do professionally?</p>
-                    <input type="text" placeholder="Your profession / study focus" onchange="saveAnswer('userJobDetails', this.value)">
+                    <p>What do you do professionally or what are you studying?</p>
+                    <input type="text" placeholder="e.g. I study IT / I work in administration" onchange="saveAnswer('userJobDetails', this.value)">
                 </div>
             </section>
 
-            <!-- SLIDE 5: HOBBIES -->
+            <!-- SLIDE 6: CHAPTER 5 — HOBBIES & FREE TIME -->
             <section class="chapter" id="chap-5">
                 <div class="card">
                     <span class="badge">🎨 Chapter 5</span>
@@ -786,80 +881,92 @@
 
                     <h3>👉 Select Your Favorite Hobbies</h3>
                     <div class="option-grid">
-                        <div class="check-card" onclick="toggleHobby(this, 'Reading')">📚 Reading</div>
-                        <div class="check-card" onclick="toggleHobby(this, 'Traveling')">✈️ Traveling</div>
-                        <div class="check-card" onclick="toggleHobby(this, 'Music')">🎵 Music</div>
-                        <div class="check-card" onclick="toggleHobby(this, 'Movies')">🎬 Movies</div>
-                        <div class="check-card" onclick="toggleHobby(this, 'Cooking')">🍳 Cooking</div>
-                        <div class="check-card" onclick="toggleHobby(this, 'Sports')">⚽ Sports</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Reading')">📚 Reading</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Traveling')">✈️ Traveling</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Music')">🎵 Music</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Movies')">🎬 Movies</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Cooking')">🍳 Cooking</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Sports')">⚽ Sports</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Photography')">📷 Photography</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Crafting/Art')">🎨 Crafting / Art</div>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 6: SKILLS -->
+            <!-- SLIDE 7: CHAPTER 6 — SKILLS & STRENGTHS -->
             <section class="chapter" id="chap-6">
                 <div class="card">
                     <span class="badge">💪 Chapter 6</span>
-                    <h2>Skills</h2>
+                    <h2>Skills & Strengths</h2>
 
-                    <p>Select key strengths for professional and personal growth:</p>
-                    <div class="option-grid">
-                        <div class="check-card" onclick="toggleSkill(this, 'Organization')">📁 Organization</div>
-                        <div class="check-card" onclick="toggleSkill(this, 'Communication')">💬 Communication</div>
-                        <div class="check-card" onclick="toggleSkill(this, 'Leadership')">👑 Leadership</div>
-                        <div class="check-card" onclick="toggleSkill(this, 'Teamwork')">🤝 Teamwork</div>
-                    </div>
-
-                    <div class="pattern-box" style="margin-top: 15px;">
+                    <div class="pattern-box">
                         <header>💡 Useful Formula</header>
                         <div class="pattern-formula">One skill I want to improve is [Skill].</div>
+                    </div>
+
+                    <h3>👉 Select Strengths to Focus On</h3>
+                    <div class="option-grid">
+                        <div class="check-card" onclick="toggleOption(this, 'Organization')">📁 Organization</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Communication')">💬 Communication</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Leadership')">👑 Leadership</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Teamwork')">🤝 Teamwork</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Problem Solving')">🧩 Problem Solving</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Creativity')">💡 Creativity</div>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 7: GOALS -->
+            <!-- SLIDE 8: CHAPTER 7 — GOALS & FUTURE -->
             <section class="chapter" id="chap-7">
                 <div class="card">
                     <span class="badge">🎯 Chapter 7</span>
                     <h2>Goals & Future</h2>
 
                     <div class="pattern-box">
-                        <header>💡 Useful Pattern (Future Goals)</header>
+                        <header>💡 Useful Patterns (Future Goals)</header>
                         <div>"My main goal for this year is to <strong>[Verb]</strong>..."</div>
                         <div class="pattern-formula">I plan to [Goal] in the next [Number] years.</div>
                     </div>
 
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>Write one future goal:</p>
-                    <input type="text" placeholder="e.g. Become fluent in English" onchange="saveAnswer('goal1', this.value)">
+                    <p>Write down one personal or professional goal:</p>
+                    <input type="text" placeholder="e.g. Become fluent in English / Buy a house" onchange="saveAnswer('userGoal', this.value)">
                 </div>
             </section>
 
-            <!-- SLIDE 8: FUN FACTS -->
+            <!-- SLIDE 9: CHAPTER 8 — FUN FACTS -->
             <section class="chapter" id="chap-8">
                 <div class="card">
                     <span class="badge">⭐ Chapter 8</span>
                     <h2>Fun Facts</h2>
 
+                    <p style="font-weight: 700;">Click to reveal fun facts categories:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">☕ Coffee</div>
-                            <div class="back">Lover!</div>
+                            <div class="front">☕ Coffee Lover</div>
+                            <div class="back">Amante de Café!</div>
                         </div>
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">🍂 Season</div>
-                            <div class="back">Autumn</div>
+                            <div class="front">🍂 Favorite Season</div>
+                            <div class="back">Estação Favorita</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🍕 Favorite Food</div>
+                            <div class="back">Comida Favorita</div>
                         </div>
                     </div>
 
-                    <p style="margin-top: 15px;">Tell us one fun fact about yourself!</p>
-                    <input type="text" placeholder="e.g. I hate cilantro / I love karaoke!" onchange="saveAnswer('funFactUser', this.value)">
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>Tell us one fun fact about yourself!</p>
+                    <input type="text" placeholder="e.g. I love karaoke / I can play guitar!" onchange="saveAnswer('funFactUser', this.value)">
                 </div>
             </section>
 
-            <!-- SLIDE 9: LET'S TALK -->
+            <!-- SLIDE 10: CHAPTER 9 — LET'S TALK! -->
             <section class="chapter" id="chap-9">
                 <div class="card" style="text-align: center;">
                     <span class="badge">💬 Chapter 9</span>
@@ -867,7 +974,7 @@
                     <p>Spin for a random question and practice speaking with a partner!</p>
 
                     <div style="background: var(--btn-bg); padding: 20px; border-radius: 18px; margin: 15px 0; border: 2px dashed var(--primary);">
-                        <p id="randomQuestionText" style="font-size: 1.15rem; font-weight: 800; color: var(--primary); margin: 0;">
+                        <p id="randomQuestionText" style="font-size: 1.1rem; font-weight: 800; color: var(--primary); margin: 0;">
                             Click below to generate a question!
                         </p>
                     </div>
@@ -884,14 +991,16 @@
                 </div>
             </section>
 
-            <!-- SLIDE 10: THANK YOU -->
+            <!-- SLIDE 11: CHAPTER 10 — THANK YOU & SUMMARY -->
             <section class="chapter" id="chap-10">
                 <div class="card" style="text-align: center;">
                     <span class="badge">🎉 Chapter 10</span>
-                    <h2>Thank You!</h2>
-                    <p style="font-size: 1.1rem; margin-top: 10px;">Thank you for participating in today's session!</p>
+                    <h2>Thank You & Summary</h2>
+                    <p style="font-size: 1.05rem; margin-top: 10px;">
+                        Great job completing today's English Conversation Club session!
+                    </p>
 
-                    <button class="btn btn-primary" onclick="exportData()" style="margin-top: 15px;">
+                    <button class="btn btn-primary" onclick="exportData()" style="margin-top: 18px;">
                         💾 Save & Download Summary
                     </button>
                 </div>
@@ -943,7 +1052,6 @@
             updateChapterView();
             startGlobalTimer();
 
-            // Keyboard Presentation Navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight' || e.key === 'Space') nextChapter();
                 if (e.key === 'ArrowLeft') prevChapter();
@@ -1026,11 +1134,7 @@
             saveAnswer('relationshipStatus', status);
         }
 
-        function toggleHobby(card, hobby) {
-            card.classList.toggle('selected');
-        }
-
-        function toggleSkill(card, skill) {
+        function toggleOption(card, val) {
             card.classList.toggle('selected');
         }
 
