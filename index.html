@@ -662,32 +662,16 @@
                             <div class="front">🌎 Country</div>
                             <div class="back">País</div>
                         </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">📖 Travel</div>
-                            <div class="back">Viajar</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">🗺️ Explore</div>
-                            <div class="back">Explorar</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">🎓 Student</div>
-                            <div class="back">Estudante</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">💼 Career</div>
-                            <div class="back">Carreira</div>
-                        </div>
                     </div>
 
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>1. How old are you?</p>
-                    <input type="text" placeholder="e.g. I am 24 years old" onchange="saveAnswer('userAge', this.value)">
+                    <p>1. What is your name?</p>
+                    <input type="text" placeholder="e.g. My name is... / I am..." onchange="saveAnswer('userName', this.value)">
 
-                    <p style="margin-top: 10px;">2. What countries would you like to visit?</p>
-                    <input type="text" placeholder="e.g. Japan, Italy, Canada..." onchange="saveAnswer('targetCountries', this.value)">
+                    <p style="margin-top: 10px;">2. How old are you?</p>
+                    <input type="text" placeholder="e.g. I am 23 years old" onchange="saveAnswer('userAge', this.value)">
                 </div>
             </section>
 
@@ -812,11 +796,24 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 Relationship Status</h3>
-                    <div class="option-grid">
-                        <div class="check-card single-select" onclick="selectStatus(this, 'Single')">👤 Single</div>
-                        <div class="check-card single-select" onclick="selectStatus(this, 'In a Relationship')">💖 In a Relationship</div>
-                        <div class="check-card single-select" onclick="selectStatus(this, 'Engaged')">💍 Engaged</div>
-                        <div class="check-card single-select" onclick="selectStatus(this, 'Married')">💒 Married</div>
+                    <p style="font-size: 0.85rem; margin-bottom: 8px;">Clique nos cards para ver a tradução:</p>
+                    <div class="flashcard-grid">
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👤 Single</div>
+                            <div class="back">Solteiro(a)</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💖 In a Relationship</div>
+                            <div class="back">Em um relacionamento</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💍 Engaged</div>
+                            <div class="back">Noivo(a)</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💒 Married</div>
+                            <div class="back">Casado(a)</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -835,27 +832,68 @@
                         <div class="pattern-formula">I work / study at [Company / University].</div>
                     </div>
 
-                    <p style="margin-top: 16px; font-weight: 700;">Work & Study Flashcards:</p>
-                    <div class="flashcard-grid">
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">🤝 Supplier</div>
-                            <div class="back">Fornecedor</div>
+                    <!-- EXPLICATIVO: PROCUREMENT VS PURCHASING -->
+                    <div class="grammar-note" style="margin: 16px 0;">
+                        <strong>💡 Purchasing vs. Procurement:</strong><br>
+                        • <strong>Purchasing (Compras):</strong> Focado no ato transacional de comprar bens/serviços (pedidos, pagamento, recebimento).<br>
+                        • <strong>Procurement (Aquisições / Aprovisionamento):</strong> Um processo mais estratégico que inclui pesquisa de fornecedores, negociação de contratos e gestão de riscos.
+                    </div>
+
+                    <!-- CATEGORIA EDUCATION -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🎓 Education (Estudos / Educação)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎓 Bachelor's Degree</div>
+                                <div class="back">Bacharelado / Graduação</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎒 Student</div>
+                                <div class="back">Estudante / Aluno</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📅 Semester</div>
+                                <div class="back">Semestre</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🏛️ University</div>
+                                <div class="back">Universidade</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📚 Major / Course</div>
+                                <div class="back">Curso / Especialização</div>
+                            </div>
                         </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">📄 Purchase Order</div>
-                            <div class="back">Pedido de Compra</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">⏰ Deadline</div>
-                            <div class="back">Prazo final</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">📊 Management</div>
-                            <div class="back">Gestão / Gerenciamento</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">📦 Logistics</div>
-                            <div class="back">Logística</div>
+                    </div>
+
+                    <!-- CATEGORIA WORK -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">💼 Work (Trabalho / Profissional)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👔 Assistant</div>
+                                <div class="back">Assistente</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📊 Analyst</div>
+                                <div class="back">Analista</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🛒 Buyer</div>
+                                <div class="back">Comprador</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🤝 Supplier</div>
+                                <div class="back">Fornecedor</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📄 Purchase Order</div>
+                                <div class="back">Pedido de Compra</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📈 Spreadsheets</div>
+                                <div class="back">Planilhas</div>
+                            </div>
                         </div>
                     </div>
 
@@ -1000,6 +1038,15 @@
                         Great job completing today's English Conversation Club session!
                     </p>
 
+                    <div style="text-align: left; margin-top: 20px;" class="section-box">
+                        <h3 style="color: var(--primary);">📝 Feedback Form</h3>
+                        <p style="font-size: 0.9rem;">1. O que você achou da sessão?</p>
+                        <input type="text" placeholder="Sua opinião sobre a apresentação..." onchange="saveAnswer('feedbackOpinion', this.value)">
+
+                        <p style="font-size: 0.9rem; margin-top: 10px;">2. O que você acha que poderia melhorar?</p>
+                        <input type="text" placeholder="Sugestões de melhoria..." onchange="saveAnswer('feedbackImprovement', this.value)">
+                    </div>
+
                     <button class="btn btn-primary" onclick="exportData()" style="margin-top: 18px;">
                         💾 Save & Download Summary
                     </button>
@@ -1126,12 +1173,6 @@
             try {
                 localStorage.setItem('englishClubData', JSON.stringify(userData));
             } catch (e) {}
-        }
-
-        function selectStatus(card, status) {
-            document.querySelectorAll('.single-select').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            saveAnswer('relationshipStatus', status);
         }
 
         function toggleOption(card, val) {
