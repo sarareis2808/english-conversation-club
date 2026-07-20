@@ -1038,17 +1038,38 @@
                         Great job completing today's English Conversation Club session!
                     </p>
 
+                    <!-- FORMULÁRIO DE FEEDBACK ANÔNIMO INTEGRADO AO FORMSPREE -->
                     <div style="text-align: left; margin-top: 20px;" class="section-box">
-                        <h3 style="color: var(--primary);">📝 Feedback Form</h3>
-                        <p style="font-size: 0.9rem;">1. O que você achou da sessão?</p>
-                        <input type="text" placeholder="Sua opinião sobre a apresentação..." onchange="saveAnswer('feedbackOpinion', this.value)">
+                        <h3 style="color: var(--primary);">🔒 Feedback Anônimo</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">
+                            Sua resposta é totalmente anônima e enviada diretamente para a facilitadora.
+                        </p>
 
-                        <p style="font-size: 0.9rem; margin-top: 10px;">2. O que você acha que poderia melhorar?</p>
-                        <input type="text" placeholder="Sugestões de melhoria..." onchange="saveAnswer('feedbackImprovement', this.value)">
+                        <form action="https://formspree.io/f/xykrjveg" method="POST" id="feedbackForm" onsubmit="handleFeedbackSubmit(event)">
+                            
+                            <p style="font-size: 0.9rem; font-weight: 700; margin-top: 10px;">
+                                1. O que você achou da sessão?
+                            </p>
+                            <textarea name="oque_achou_da_sessao" rows="3" placeholder="Sua opinião sincera sobre a apresentação..." required></textarea>
+
+                            <p style="font-size: 0.9rem; font-weight: 700; margin-top: 10px;">
+                                2. O que você acha que poderia melhorar?
+                            </p>
+                            <textarea name="oque_pode_melhorar" rows="3" placeholder="Sugestões de melhoria..." required></textarea>
+
+                            <button type="submit" class="btn btn-primary" style="margin-top: 12px; width: 100%;">
+                                ✉️ Enviar Feedback Anônimo
+                            </button>
+                        </form>
+
+                        <!-- MENSAGEM DE SUCESSO DO ENVIO DE FEEDBACK -->
+                        <div id="feedbackSuccess" style="display: none; background: #E6F9EE; border: 1px solid #B3E8C7; color: #008537; padding: 12px; border-radius: 12px; text-align: center; margin-top: 12px; font-weight: 700;">
+                            ✅ Obrigado pelo feedback! Suas respostas foram enviadas anonimamente.
+                        </div>
                     </div>
 
-                    <button class="btn btn-primary" onclick="exportData()" style="margin-top: 18px;">
-                        💾 Save & Download Summary
+                    <button class="btn" onclick="exportData()" style="margin-top: 18px; width: 100%;">
+                        💾 Save & Download Summary (.txt)
                     </button>
                 </div>
             </section>
@@ -1193,6 +1214,29 @@
             document.documentElement.style.fontSize = (current === '18px') ? '16px' : '18px';
         }
 
+        async function handleFeedbackSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('feedbackSuccess').style.display = 'block';
+                } else {
+                    alert("Ocorreu um erro ao enviar o feedback. Tente novamente.");
+                }
+            } catch (error) {
+                alert("Ocorreu um erro de conexão ao enviar o feedback.");
+            }
+        }
+
         function exportData() {
             let text = "=== ENGLISH CONVERSATION CLUB - SUMMARY ===\n\n";
             for (let key in userData) {
@@ -1207,3 +1251,4 @@
     </script>
 </body>
 </html>
+
