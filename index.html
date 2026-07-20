@@ -582,10 +582,10 @@
                 <option value="4">Slide 5: Chapter 4 — Work & Education</option>
                 <option value="5">Slide 6: Chapter 5 — Hobbies & Free Time</option>
                 <option value="6">Slide 7: Chapter 6 — Skills & Strengths</option>
-                <option value="7">Slide 8: Chapter 7 — Goals & Future</option>
-                <option value="8">Slide 9: Chapter 8 — Fun Facts</option>
-                <option value="9">Slide 10: Chapter 9 — Let's Talk!</option>
-                <option value="10">Slide 11: Chapter 10 — Thank You</option>
+                <option value="7">Slide 8: Chapter 8 — Fun Facts & Favorites</option>
+                <option value="8">Slide 9: Chapter 9 — Let's Talk!</option>
+                <option value="9">Slide 10: Chapter 10 — Asking Questions</option>
+                <option value="10">Slide 11: Chapter 11 — Thank You</option>
             </select>
 
             <div class="progress-container">
@@ -683,6 +683,13 @@
                     
                     <p>I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest, German architecture, beautiful nature, and high quality of life.</p>
 
+                    <!-- SEÇÃO EXPLICATIVA: I'M FROM vs I LIVE IN -->
+                    <div class="grammar-note" style="margin: 16px 0;">
+                        <strong>💡 Qual a diferença entre "I'm from" e "I live in"?</strong><br>
+                        • <strong>I'm from... (Eu sou de...):</strong> Refere-se ao seu local de origem ou onde você nasceu/cresceu. Ex: <em>"I'm from Rio de Janeiro."</em><br>
+                        • <strong>I live in... (Eu moro em...):</strong> Refere-se ao seu local de residência atual. Ex: <em>"I live in Blumenau."</em>
+                    </div>
+
                     <div class="pattern-box">
                         <header>💡 Sentence Patterns (Describing a City)</header>
                         <div>"My city is famous for <strong>[Noun / Activity]</strong>."</div>
@@ -712,11 +719,11 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>1. Describe your city using two adjectives:</p>
-                    <input type="text" placeholder="e.g. Beautiful and vibrant" onchange="saveAnswer('cityAdjectives', this.value)">
+                    <p>1. Where are you from? / Where do you live?</p>
+                    <input type="text" placeholder="e.g. I am from... / I live in..." onchange="saveAnswer('userOriginAndCity', this.value)">
 
-                    <p style="margin-top: 10px;">2. What is your favorite place in your city?</p>
-                    <input type="text" placeholder="e.g. The central park, river promenade..." onchange="saveAnswer('favCityPlace', this.value)">
+                    <p style="margin-top: 10px;">2. Describe your city using two adjectives:</p>
+                    <input type="text" placeholder="e.g. Beautiful and vibrant" onchange="saveAnswer('cityAdjectives', this.value)">
                 </div>
             </section>
 
@@ -954,37 +961,17 @@
                 </div>
             </section>
 
-            <!-- SLIDE 8: CHAPTER 7 — GOALS & FUTURE -->
+            <!-- SLIDE 8: CHAPTER 8 — FUN FACTS & FAVORITES -->
             <section class="chapter" id="chap-7">
                 <div class="card">
-                    <span class="badge">🎯 Chapter 7</span>
-                    <h2>Goals & Future</h2>
-
-                    <div class="pattern-box">
-                        <header>💡 Useful Patterns (Future Goals)</header>
-                        <div>"My main goal for this year is to <strong>[Verb]</strong>..."</div>
-                        <div class="pattern-formula">I plan to [Goal] in the next [Number] years.</div>
-                    </div>
-
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
-
-                    <h3>👉 YOUR TURN</h3>
-                    <p>Write down one personal or professional goal:</p>
-                    <input type="text" placeholder="e.g. Become fluent in English / Buy a house" onchange="saveAnswer('userGoal', this.value)">
-                </div>
-            </section>
-
-            <!-- SLIDE 9: CHAPTER 8 — FUN FACTS -->
-            <section class="chapter" id="chap-8">
-                <div class="card">
                     <span class="badge">⭐ Chapter 8</span>
-                    <h2>Fun Facts</h2>
+                    <h2>Fun Facts & Favorites</h2>
 
-                    <p style="font-weight: 700;">Click to reveal fun facts categories:</p>
+                    <p style="font-weight: 700;">Click to reveal cards:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">☕ Coffee Lover</div>
-                            <div class="back">Amante de Café!</div>
+                            <div class="front">🎬 Favorite Movie</div>
+                            <div class="back">Filme Favorito</div>
                         </div>
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">🍂 Favorite Season</div>
@@ -996,16 +983,123 @@
                         </div>
                     </div>
 
+                    <!-- SEÇÃO: ESTAÇÕES DO ANO -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🍂 Seasons of the Year (Estações do Ano)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🌸 Spring</div>
+                                <div class="back">Primavera</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">☀️ Summer</div>
+                                <div class="back">Verão</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍁 Autumn / Fall</div>
+                                <div class="back">Outono</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">❄️ Winter</div>
+                                <div class="back">Inverno</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: ESTILOS DE FILME -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🎬 Movie Genres (Estilos de Filme)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">😂 Comedy</div>
+                                <div class="back">Comédia</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎨 Animation</div>
+                                <div class="back">Animação</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👻 Horror / Terror</div>
+                                <div class="back">Terror / Horror</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💥 Action</div>
+                                <div class="back">Ação</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💖 Romance</div>
+                                <div class="back">Romance</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🚀 Sci-Fi</div>
+                                <div class="back">Ficção Científica</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: COMIDAS E BEBIDAS -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🍕 Favorite Foods & Drinks (Comidas e Bebidas)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍕 Pizza</div>
+                                <div class="back">Pizza</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍝 Spaghetti</div>
+                                <div class="back">Espaguete</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍔 Burger</div>
+                                <div class="back">Hambúrguer</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍣 Sushi</div>
+                                <div class="back">Sushi</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🦐 Seafood</div>
+                                <div class="back">Frutos do Mar</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍦 Ice Cream</div>
+                                <div class="back">Sorvete</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍫 Chocolate</div>
+                                <div class="back">Chocolate</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">☕ Coffee</div>
+                                <div class="back">Café</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍵 Tea</div>
+                                <div class="back">Chá</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">⚡ Energy Drink</div>
+                                <div class="back">Energético</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>Tell us one fun fact about yourself!</p>
-                    <input type="text" placeholder="e.g. I love karaoke / I can play guitar!" onchange="saveAnswer('funFactUser', this.value)">
+                    <p>1. What is your favorite season?</p>
+                    <input type="text" placeholder="e.g. My favorite season is Autumn..." onchange="saveAnswer('favSeason', this.value)">
+
+                    <p style="margin-top: 10px;">2. What is your favorite movie?</p>
+                    <input type="text" placeholder="e.g. My favorite movie is..." onchange="saveAnswer('favMovie', this.value)">
+
+                    <p style="margin-top: 10px;">3. What is your favorite movie genre?</p>
+                    <input type="text" placeholder="e.g. I love Comedy and Romance..." onchange="saveAnswer('favGenre', this.value)">
                 </div>
             </section>
 
-            <!-- SLIDE 10: CHAPTER 9 — LET'S TALK! -->
-            <section class="chapter" id="chap-9">
+            <!-- SLIDE 9: CHAPTER 9 — LET'S TALK! -->
+            <section class="chapter" id="chap-8">
                 <div class="card" style="text-align: center;">
                     <span class="badge">💬 Chapter 9</span>
                     <h2>Let's Talk!</h2>
@@ -1029,10 +1123,51 @@
                 </div>
             </section>
 
-            <!-- SLIDE 11: CHAPTER 10 — THANK YOU & SUMMARY -->
+            <!-- SLIDE 10: CHAPTER 10 — ASKING QUESTIONS IN ENGLISH -->
+            <section class="chapter" id="chap-9">
+                <div class="card">
+                    <span class="badge">❓ Chapter 10</span>
+                    <h2>Asking Questions in English</h2>
+                    <p>Para manter uma conversa fluindo, fazer perguntas é essencial! Aqui estão as principais formas de perguntar:</p>
+
+                    <div class="pattern-box">
+                        <header>💡 Essential Question Formulas</header>
+                        <p style="margin-bottom: 6px;">• <strong>What is your name?</strong> (Qual é o seu nome?)</p>
+                        <p style="margin-bottom: 6px;">• <strong>How old are you?</strong> (Quantos anos você tem?)</p>
+                        <p style="margin-bottom: 6px;">• <strong>What do you do?</strong> (O que você faz? / Qual sua profissão?)</p>
+                        <p style="margin-bottom: 0;">• <strong>What do you like?</strong> (Do que você gosta?)</p>
+                    </div>
+
+                    <!-- DICA DE CONVERSAÇÃO -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🗣️ Quick Follow-up Questions</h3>
+                        <p style="font-size: 0.9rem;">
+                            Quando alguém te fizer uma pergunta e você quiser devolver a mesma pergunta de forma rápida e natural, use:
+                        </p>
+                        <div class="flashcard-grid" style="margin-top: 10px;">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💬 And you?</div>
+                                <div class="back">E você?</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💬 How about you?</div>
+                                <div class="back">E quanto a você?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 PRACTICE</h3>
+                    <p>Escreva uma pergunta em inglês que você gostaria de fazer para a sua dupla:</p>
+                    <input type="text" placeholder="e.g. What do you like to do on weekends?" onchange="saveAnswer('userPracticeQuestion', this.value)">
+                </div>
+            </section>
+
+            <!-- SLIDE 11: CHAPTER 11 — THANK YOU & SUMMARY -->
             <section class="chapter" id="chap-10">
                 <div class="card" style="text-align: center;">
-                    <span class="badge">🎉 Chapter 10</span>
+                    <span class="badge">🎉 Chapter 11</span>
                     <h2>Thank You & Summary</h2>
                     <p style="font-size: 1.05rem; margin-top: 10px;">
                         Great job completing today's English Conversation Club session!
@@ -1062,7 +1197,7 @@
                             </button>
                         </form>
 
-                        <!-- MENSAGEM DE SUCESSO DO ENVIO DE FEEDBACK -->
+                        <!-- MENSAGEM DE SUCESSO -->
                         <div id="feedbackSuccess" style="display: none; background: #E6F9EE; border: 1px solid #B3E8C7; color: #008537; padding: 12px; border-radius: 12px; text-align: center; margin-top: 12px; font-weight: 700;">
                             ✅ Obrigado pelo feedback! Suas respostas foram enviadas anonimamente.
                         </div>
@@ -1251,4 +1386,3 @@
     </script>
 </body>
 </html>
-
