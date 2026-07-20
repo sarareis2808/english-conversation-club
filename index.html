@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Conversation Club — Sara Reis</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           1. CORE STYLES & PASTEL PINK PALETTE
+           ========================================== */
+        :root {
+            --primary: #EC407A;
+            --primary-grad: linear-gradient(135deg, #F48FB1 0%, #EC407A 100%);
+            --bg-grad: linear-gradient(180deg, #FCE4EC 0%, #F8BBD0 100%);
+            --card-bg: #FFFFFF;
+            --text-primary: #332228;
+            --text-secondary: #7A656C;
+            --btn-bg: #FFF0F5;
+            --btn-hover: #FCE4EC;
+            --success: #00C853;
+            --error: #FF3B30;
+            --border-radius: 24px;
+            --border-color: #F8D7E3;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-size-base: 16px;
+            --shadow: 0px 10px 30px rgba(236, 64, 122, 0.12);
+        }
+
+        body.dark-mode {
+            --bg-grad: linear-gradient(180deg, #2A1A20 0%, #1F1217 100%);
+            --card-bg: #2B2025;
+            --text-primary: #FDF0F5;
+            --text-secondary: #D2B8C3;
+            --btn-bg: #3B2A31;
+            --btn-hover: #4A363E;
+            --border-color: #4A363E;
+            --shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            height: 100%;
+            font-size: var(--font-size-base);
+            background: var(--bg-grad);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+
+        /* App Layout Container */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 40px rgba(236, 64, 122, 0.15);
+        }
+
+        /* ==========================================
+           2. HEADER & CONTROL BAR
+           ========================================== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--card-bg);
+            padding: 12px 16px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kwai-logo {
+            background: var(--primary-grad);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tools-menu {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .tool-btn {
+            background: var(--btn-bg);
+            border: none;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .tool-btn:active {
+            transform: scale(0.9);
+        }
+
+        .global-timer {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--btn-bg);
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background: var(--btn-bg);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-grad);
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+
+        .chapter-indicator {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* ==========================================
+           3. MAIN CONTENT & CHAPTER CARDS
+           ========================================== */
+        main {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-bottom: 90px;
+        }
+
+        .chapter {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            width: 100%;
+        }
+
+        .chapter.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .badge {
+            background: var(--primary-grad);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-primary);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+
+        h1 { font-size: 1.6rem; }
+        h2 { font-size: 1.3rem; }
+        h3 { font-size: 1.1rem; }
+
+        p, li {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .avatar-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary-grad);
+            margin: 0 auto 16px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(236, 64, 122, 0.3);
+            border: 4px solid white;
+        }
+
+        .image-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .img-placeholder {
+            background: var(--btn-bg);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .img-placeholder span {
+            font-size: 1.8rem;
+        }
+
+        /* ==========================================
+           4. FORM CONTROLS & INTERACTIVE ELEMENTS
+           ========================================== */
+        .btn {
+            width: 100%;
+            background-color: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover:not(:disabled) {
+            background-color: var(--btn-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary-grad);
+            color: white;
+            border: none;
+            box-shadow: 0 6px 18px rgba(236, 64, 122, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-grad);
+            opacity: 0.95;
+            color: white;
+        }
+
+        /* Quiz Buttons */
+        .quiz-option {
+            width: 100%;
+            text-align: left;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .quiz-option.correct {
+            background-color: #E6F9EE !important;
+            border-color: var(--success) !important;
+            color: #008537 !important;
+        }
+
+        .quiz-option.wrong {
+            background-color: #FFEBEB !important;
+            border-color: var(--error) !important;
+            color: #CC2118 !important;
+        }
+
+        /* Inputs & Textareas */
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            background-color: var(--btn-bg);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            border-color: var(--primary);
+            background-color: var(--card-bg);
+        }
+
+        /* Option Grids */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .check-card {
+            background: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+
+        .check-card.selected {
+            border-color: var(--primary);
+            background: var(--btn-hover);
+            color: var(--primary);
+        }
+
+        .info-box {
+            background: rgba(236, 64, 122, 0.06);
+            border-left: 4px solid var(--primary);
+            padding: 12px 14px;
+            border-radius: 0 12px 12px 0;
+            margin: 12px 0;
+            font-size: 0.85rem;
+        }
+
+        .info-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .vocab-item {
+            background: var(--btn-bg);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            margin: 15px 0;
+            border-left: 3px solid var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 16px;
+            padding-left: 10px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--card-bg);
+        }
+
+        .timeline-item h4 {
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           5. FOOTER & NAVIGATION
+           ========================================== */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            padding: 12px 16px;
+            box-shadow: 0 -4px 20px rgba(236, 64, 122, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            margin-bottom: 0;
+            padding: 12px;
+        }
+
+        .word-counter {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: right;
+            margin-top: -8px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 360px) {
+            h1 { font-size: 1.4rem; }
+            .card { padding: 18px 14px; }
+            .option-grid { grid-template-columns: 1fr; }
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- HEADER -->
+        <header>
+            <div class="header-top">
+                <div class="kwai-logo">
+                    <span>⚡</span> CONVERSATION CLUB
+                </div>
+                <div class="tools-menu">
+                    <div class="global-timer" id="globalTimer">⏱️ 40:00</div>
+                    <button class="tool-btn" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">🌙</button>
+                    <button class="tool-btn" onclick="adjustFontSize()" title="Adjust Font Size">🅰️</button>
+                    <button class="tool-btn" onclick="exportData()" title="Export Answers">💾</button>
+                    <button class="tool-btn" onclick="window.print()" title="Print Summary">🖨️</button>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="chapter-indicator" id="chapterIndicator">Welcome (1/11)</div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main id="mainContent">
+
+            <!-- CHAPTER 0: WELCOME -->
+            <section class="chapter active" id="chap-0">
+                <div class="card" style="text-align: center;">
+                    <div class="avatar-box">👩‍💼</div>
+                    <span class="badge">👋 Welcome</span>
+                    <h1>Hello Everyone!</h1>
+                    <p style="margin-top: 10px;">Welcome to today's <strong>English Conversation Club</strong>!</p>
+                    <p>Today I'd like to share a little about my life while we practice English together in a fun, interactive way.</p>
+                    <div class="info-box" style="text-align: left; margin-top: 15px;">
+                        <strong>💡 How this app works:</strong>
+                        • Tap through the chapters.<br>
+                        • Answer questions & write your thoughts.<br>
+                        • Practice speaking with your partner!
+                    </div>
+                    <button class="btn btn-primary" onclick="nextChapter()" style="margin-top: 15px;">
+                        Start Journey 🚀
+                    </button>
+                </div>
+            </section>
+
+            <!-- CHAPTER 1: ABOUT ME (FIXED HEADER FORMATTING) -->
+            <section class="chapter" id="chap-1">
+                <div class="card">
+                    <span class="badge">🌎 Chapter 1</span>
+                    <h2>About Me</h2>
+                    <p>Hello! My name is <strong>Sara Reis</strong>. I live in Blumenau.</p>
+                    <p>Today I'll tell you about:</p>
+                    <ul style="padding-left: 20px; margin-bottom: 15px; color: var(--text-secondary);">
+                        <li>My family</li>
+                        <li>My work</li>
+                        <li>My hobbies</li>
+                        <li>My goals</li>
+                    </ul>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <h3>Before we start...</h3>
+                    <p>Have you ever been to Blumenau?</p>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn" onclick="saveAnswer('beenToBlumenau', 'Yes'); alert('Awesome!')">Yes 🏙️</button>
+                        <button class="btn" onclick="saveAnswer('beenToBlumenau', 'No'); alert('You should visit!')">No 🗺️</button>
+                    </div>
+
+                    <p style="margin-top: 15px;">Do you enjoy traveling?</p>
+                    <input type="text" id="ans-travel" placeholder="e.g. Yes, I love exploring new places!" onchange="saveAnswer('enjoyTravel', this.value)">
+
+                    <p>What countries would you like to visit?</p>
+                    <textarea id="ans-countries" rows="2" placeholder="e.g. Japan, Italy, Canada..." onchange="saveAnswer('targetCountries', this.value)"></textarea>
+
+                    <div class="info-box">
+                        <strong>🎯 Mini Challenge:</strong>
+                        Ask the person next to you where they would like to travel!
+                    </div>
+
+                    <div class="vocab-grid">
+                        <div class="vocab-item">📖 Travel (Viajar)</div>
+                        <div class="vocab-item">📖 Explore (Explorar)</div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">💬 <em>Useful Expression: "I'd love to visit..."</em></p>
+                </div>
+            </section>
+
+            <!-- CHAPTER 2: MY CITY -->
+            <section class="chapter" id="chap-2">
+                <div class="card">
+                    <span class="badge">🏡 Chapter 2</span>
+                    <h2>My City — Blumenau</h2>
+                    
+                    <div class="image-card-grid">
+                        <div class="img-placeholder"><span>🇧🇷</span> Brazil Map</div>
+                        <div class="img-placeholder"><span>🏙️</span> Blumenau</div>
+                        <div class="img-placeholder"><span>🍺</span> Oktoberfest</div>
+                        <div class="img-placeholder"><span>🌲</span> Landscape</div>
+                    </div>
+
+                    <div class="vocab-grid">
+                        <div class="vocab-item">🏰 City</div>
+                        <div class="vocab-item">🌎 Country</div>
+                        <div class="vocab-item">☀️ Weather</div>
+                        <div class="vocab-item">🎭 Culture</div>
+                        <div class="vocab-item">📸 Tourism</div>
+                        <div class="vocab-item">🛡️ Safety</div>
+                    </div>
+
+                    <p style="margin-top: 12px;">I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest. I like living here because of its culture and high quality of life.</p>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>Where do you live?</p>
+                    <input type="text" placeholder="Your city/state" onchange="saveAnswer('userCity', this.value)">
+
+                    <p>What is your city famous for?</p>
+                    <input type="text" placeholder="e.g. Food, parks, beaches..." onchange="saveAnswer('cityFamous', this.value)">
+
+                    <p>Describe your city using three adjectives:</p>
+                    <input type="text" placeholder="e.g. Beautiful, quiet, hot" onchange="saveAnswer('cityAdjectives', this.value)">
+
+                    <div class="info-box">
+                        <strong>❓ Mini Quiz: Which sentence is correct?</strong>
+                        <div style="margin-top: 8px;">
+                            <button class="btn quiz-option" onclick="checkQuiz(this, false, 'quiz-city')">○ I have 30 years.</button>
+                            <button class="btn quiz-option" onclick="checkQuiz(this, true, 'quiz-city')">○ I am 30 years old.</button>
+                        </div>
+                        <div id="quiz-city-fb" style="margin-top: 6px; font-weight: bold; font-size: 0.85rem;"></div>
+                    </div>
+
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px;">
+                        💡 <strong>Tip of the Day:</strong> In English, we use the verb <em>TO BE</em> for age, not "have"!
+                    </p>
+                </div>
+            </section>
+
+            <!-- CHAPTER 3: MY FAMILY (UPDATED GRID & RELATIONSHIP STATUS) -->
+            <section class="chapter" id="chap-3">
+                <div class="card">
+                    <span class="badge">👨‍👩‍👧 Chapter 3</span>
+                    <h2>My Family</h2>
+
+                    <!-- Ordered Grid in Pairs -->
+                    <div class="image-card-grid">
+                        <div class="img-placeholder"><span>👩</span> Mother</div>
+                        <div class="img-placeholder"><span>👨</span> Father</div>
+
+                        <div class="img-placeholder"><span>👰‍♀️</span> Wife</div>
+                        <div class="img-placeholder"><span>🤵‍♂️</span> Husband</div>
+
+                        <div class="img-placeholder"><span>👦</span> Brother</div>
+                        <div class="img-placeholder"><span>👧</span> Sister</div>
+
+                        <div class="img-placeholder"><span>🧒</span> Son</div>
+                        <div class="img-placeholder"><span>👧</span> Daughter</div>
+
+                        <div class="img-placeholder"><span>👶</span> Children</div>
+                        <div class="img-placeholder"><span>👨‍👩‍👧‍👦</span> Family</div>
+                    </div>
+
+                    <p>Family is very important to me. I love spending quality time together, sharing meals, and creating special memories.</p>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <!-- Relationship Status Section -->
+                    <h3>💍 Relationship Status</h3>
+                    <p>Select your current relationship status:</p>
+                    <div class="option-grid">
+                        <div class="check-card single-select" onclick="selectStatus(this, 'Single')">👤 Single</div>
+                        <div class="check-card single-select" onclick="selectStatus(this, 'In a Relationship')">💖 In a Relationship</div>
+                        <div class="check-card single-select" onclick="selectStatus(this, 'Engaged')">💍 Engaged</div>
+                        <div class="check-card single-select" onclick="selectStatus(this, 'Married')">💒 Married</div>
+                        <div class="check-card single-select" onclick="selectStatus(this, 'Divorced')">📄 Divorced</div>
+                        <div class="check-card single-select" onclick="selectStatus(this, 'It\'s Complicated')">🌀 It's Complicated</div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>Write about your family:</p>
+                    <textarea rows="2" placeholder="Tell us briefly about your family..." onchange="saveAnswer('myFamilyText', this.value)"></textarea>
+
+                    <div class="info-box">
+                        <strong>🗣️ Conversation Challenge:</strong>
+                        Talk with your partner for one minute using these questions:
+                        <ul style="padding-left: 15px; margin-top: 6px;">
+                            <li>Do you have children or siblings?</li>
+                            <li>Who is closest to you?</li>
+                            <li>What do you usually do together?</li>
+                        </ul>
+                    </div>
+
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                        ⚠️ <strong>Common Mistake:</strong> Don't say "parents" when you mean "relatives"! <em>Parents</em> = Mother & Father. <em>Relatives</em> = Aunts, Uncles, Cousins.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CHAPTER 4: WORK & EDUCATION -->
+            <section class="chapter" id="chap-4">
+                <div class="card">
+                    <span class="badge">💼 Chapter 4</span>
+                    <h2>Work & Education</h2>
+
+                    <div class="image-card-grid">
+                        <div class="img-placeholder"><span>🏢</span> Office</div>
+                        <div class="img-placeholder"><span>💻</span> Computer</div>
+                        <div class="img-placeholder"><span>📦</span> Procurement</div>
+                        <div class="img-placeholder"><span>📊</span> Documents</div>
+                    </div>
+
+                    <p>I work professionally in administration and procurement, managing suppliers, documents, and spreadsheets daily. I am also pursuing higher education to advance my career skills!</p>
+
+                    <div class="vocab-grid">
+                        <div class="vocab-item">🤝 Supplier</div>
+                        <div class="vocab-item">📅 Meeting</div>
+                        <div class="vocab-item">🏬 Department</div>
+                        <div class="vocab-item">📄 Purchase Order</div>
+                        <div class="vocab-item">👔 Manager</div>
+                        <div class="vocab-item">📈 Spreadsheet</div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>Where do you work / study?</p>
+                    <input type="text" placeholder="Company / School / Role" onchange="saveAnswer('userWorkplace', this.value)">
+
+                    <p>What do you do?</p>
+                    <input type="text" placeholder="Describe your responsibilities" onchange="saveAnswer('userJobDetails', this.value)">
+
+                    <div class="info-box">
+                        <strong>🎯 Mini Challenge: Describe your job in 5 sentences</strong>
+                        <textarea rows="3" id="jobFiveSentences" placeholder="Write 5 sentences about your job..." oninput="updateWordCount(this)"></textarea>
+                        <div class="word-counter" id="wordCountDisplay">Words: 0</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAPTER 5: HOBBIES -->
+            <section class="chapter" id="chap-5">
+                <div class="card">
+                    <span class="badge">🎨 Chapter 5</span>
+                    <h2>Hobbies & Free Time</h2>
+
+                    <div class="image-card-grid">
+                        <div class="img-placeholder"><span>📚</span> Reading</div>
+                        <div class="img-placeholder"><span>🎵</span> Music</div>
+                        <div class="img-placeholder"><span>✈️</span> Traveling</div>
+                        <div class="img-placeholder"><span>🎬</span> Movies</div>
+                        <div class="img-placeholder"><span>☕</span> Coffee</div>
+                        <div class="img-placeholder"><span>🎨</span> Art & Design</div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <h3>👉 Favorite Hobby</h3>
+                    <p>Select your favorite hobby:</p>
+                    
+                    <div class="option-grid">
+                        <div class="check-card" onclick="toggleHobby(this, 'Reading')">📚 Reading</div>
+                        <div class="check-card" onclick="toggleHobby(this, 'Traveling')">✈️ Traveling</div>
+                        <div class="check-card" onclick="toggleHobby(this, 'Music')">🎵 Music</div>
+                        <div class="check-card" onclick="toggleHobby(this, 'Movies')">🎬 Movies</div>
+                        <div class="check-card" onclick="toggleHobby(this, 'Sports')">⚽ Sports</div>
+                        <div class="check-card" onclick="toggleHobby(this, 'Cooking')">🍳 Cooking</div>
+                        <div class="check-card" onclick="toggleHobby(this, 'Gaming')">🎮 Gaming</div>
+                        <div class="check-card" onclick="toggleHobby(this, 'Other')">✨ Other</div>
+                    </div>
+
+                    <div id="otherHobbyInput" class="hidden">
+                        <input type="text" placeholder="Specify your other hobby..." onchange="saveAnswer('otherHobbyDetails', this.value)">
+                    </div>
+
+                    <p style="margin-top: 10px;">Describe why you love your favorite hobby:</p>
+                    <textarea rows="2" placeholder="I love this hobby because..." onchange="saveAnswer('hobbyDesc', this.value)"></textarea>
+
+                    <div class="info-box">
+                        <strong>🗣️ Conversation Challenge:</strong>
+                        Find someone in the group who shares the same hobby!
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAPTER 6: SKILLS -->
+            <section class="chapter" id="chap-6">
+                <div class="card">
+                    <span class="badge">💪 Chapter 6</span>
+                    <h2>Skills</h2>
+
+                    <p>Select your strongest skills:</p>
+                    <div class="option-grid">
+                        <div class="check-card" onclick="toggleSkill(this, 'Organization')">📁 Organization</div>
+                        <div class="check-card" onclick="toggleSkill(this, 'Communication')">💬 Communication</div>
+                        <div class="check-card" onclick="toggleSkill(this, 'Leadership')">👑 Leadership</div>
+                        <div class="check-card" onclick="toggleSkill(this, 'Teamwork')">🤝 Teamwork</div>
+                        <div class="check-card" onclick="toggleSkill(this, 'Problem Solving')">🧩 Problem Solving</div>
+                        <div class="check-card" onclick="toggleSkill(this, 'Time Management')">⏰ Time Mgmt</div>
+                    </div>
+
+                    <p style="margin-top: 12px;">Explain why you excel at these skills:</p>
+                    <textarea rows="2" placeholder="I am good at..." onchange="saveAnswer('skillExplain', this.value)"></textarea>
+
+                    <div class="info-box">
+                        <strong>🎯 Mini Challenge:</strong>
+                        Tell your partner about <strong>one skill</strong> you want to improve this year!
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAPTER 7: GOALS -->
+            <section class="chapter" id="chap-7">
+                <div class="card">
+                    <span class="badge">🎯 Chapter 7</span>
+                    <h2>My Goals</h2>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Today</h4>
+                            <p>Improve English fluency & practice speaking daily.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>1 Year</h4>
+                            <p>Advance professionally & master new technology tools.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>3 - 5 Years</h4>
+                            <p>Work in a global/international company role.</p>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>Write three personal goals:</p>
+                    <input type="text" placeholder="1. Goal one..." onchange="saveAnswer('goal1', this.value)">
+                    <input type="text" placeholder="2. Goal two..." onchange="saveAnswer('goal2', this.value)">
+                    <input type="text" placeholder="3. Goal three..." onchange="saveAnswer('goal3', this.value)">
+
+                    <p>What motivates you every day?</p>
+                    <input type="text" placeholder="e.g. My family, personal growth..." onchange="saveAnswer('motivation', this.value)">
+
+                    <div class="info-box">
+                        <strong>🗣️ Conversation Practice:</strong>
+                        Ask your partner about their future plans!
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAPTER 8: FUN FACTS -->
+            <section class="chapter" id="chap-8">
+                <div class="card">
+                    <span class="badge">⭐ Chapter 8</span>
+                    <h2>Fun Facts</h2>
+
+                    <div class="vocab-grid">
+                        <div class="vocab-item">🍕 Fav Food: Pasta</div>
+                        <div class="vocab-item">🎬 Fav Movie: Drama</div>
+                        <div class="vocab-item">📖 Fav Book: Novels</div>
+                        <div class="vocab-item">🍂 Fav Season: Autumn</div>
+                        <div class="vocab-item">☕ Coffee Lover!</div>
+                        <div class="vocab-item">✈️ Dream Destination</div>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 15px;">
+                        <strong>❓ Mini Quiz: Guess my dream destination!</strong>
+                        <div style="margin-top: 8px;" class="option-grid">
+                            <button class="btn quiz-option" onclick="checkQuiz(this, false, 'quiz-dest')">🇯🇵 Japan</button>
+                            <button class="btn quiz-option" onclick="checkQuiz(this, false, 'quiz-dest')">🇨🇦 Canada</button>
+                            <button class="btn quiz-option" onclick="checkQuiz(this, true, 'quiz-dest')">🇮🇹 Italy</button>
+                            <button class="btn quiz-option" onclick="checkQuiz(this, false, 'quiz-dest')">🇦🇺 Australia</button>
+                        </div>
+                        <div id="quiz-dest-fb" style="margin-top: 6px; font-weight: bold; font-size: 0.85rem;"></div>
+                    </div>
+
+                    <p style="margin-top: 15px;">Tell us one fun fact about yourself!</p>
+                    <input type="text" placeholder="e.g. I can play the guitar / I hate cilantro!" onchange="saveAnswer('funFactUser', this.value)">
+                </div>
+            </section>
+
+            <!-- CHAPTER 9: LET'S TALK -->
+            <section class="chapter" id="chap-9">
+                <div class="card" style="text-align: center;">
+                    <span class="badge">💬 Chapter 9</span>
+                    <h2>Let's Talk!</h2>
+                    <p>Spin for a random question and practice speaking!</p>
+
+                    <div style="background: var(--btn-bg); padding: 20px; border-radius: 18px; margin: 15px 0; border: 2px dashed var(--primary);">
+                        <p id="randomQuestionText" style="font-size: 1.1rem; font-weight: 800; color: var(--primary); margin: 0;">
+                            Click the button below to get your first question!
+                        </p>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="generateNextQuestion()">
+                        🎲 Next Question
+                    </button>
+
+                    <div style="margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 10px;">
+                        <span style="font-weight: 700;">Challenge Timer:</span>
+                        <div class="global-timer" id="talkTimer">⏳ 02:00</div>
+                        <button class="btn" style="width: auto; padding: 6px 12px; margin: 0;" onclick="startTalkTimer()">Start</button>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn" onclick="alert('🔄 Time to change partners! Stand up and find someone new!')">
+                            🔄 Change Partner
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAPTER 10: THANK YOU -->
+            <section class="chapter" id="chap-10">
+                <div class="card" style="text-align: center;">
+                    <span class="badge">🎉 Chapter 10</span>
+                    <h2>Thank You!</h2>
+
+                    <div class="avatar-box">💖</div>
+
+                    <p>It was an absolute pleasure sharing my story and practicing English with all of you today!</p>
+                    <p>I hope you enjoyed today's conversation session.</p>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+
+                    <h3>Feedback Form</h3>
+                    <input type="text" placeholder="Your Name" onchange="saveAnswer('feedbackName', this.value)">
+                    <input type="text" placeholder="What was your favorite part?" onchange="saveAnswer('feedbackFavPart', this.value)">
+                    <textarea rows="2" placeholder="Any suggestions or comments?" onchange="saveAnswer('feedbackSuggestions', this.value)"></textarea>
+
+                    <button class="btn btn-primary" onclick="submitFeedback()">
+                        Submit & Finish 🌟
+                    </button>
+
+                    <div id="thankYouAnimation" class="hidden" style="margin-top: 15px; color: var(--success); font-weight: 800; font-size: 1.1rem;">
+                        ✨ Response saved! Thank you for participating! ✨
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER NAVIGATION -->
+        <footer>
+            <button class="btn nav-btn" id="prevBtn" onclick="prevChapter()" disabled>
+                ⬅️ Previous
+            </button>
+            <button class="btn btn-primary nav-btn" id="nextBtn" onclick="nextChapter()">
+                Next ➡️
+            </button>
+        </footer>
+    </div>
+
+    <!-- ==========================================
+       6. JAVASCRIPT LOGIC
+       ========================================== -->
+    <script>
+        let currentChapter = 0;
+        const totalChapters = 11; 
+        let userData = {};
+
+        // Safe Storage Handler to prevent SecurityError in Sandboxed IFrames
+        try {
+            userData = JSON.parse(localStorage.getItem('englishClubData') || '{}');
+        } catch (e) {
+            console.warn('LocalStorage unavailable in sandbox:', e);
+        }
+
+        let globalTimeSeconds = 40 * 60;
+        let talkTimeSeconds = 120;
+        let talkInterval = null;
+        let fontSizeLevel = 1;
+
+        const talkQuestions = [
+            "Where are you from?",
+            "What do you do for work or study?",
+            "Do you like traveling? What's your dream vacation?",
+            "What languages do you speak or want to learn?",
+            "What is your dream job?",
+            "What is your favorite movie of all time?",
+            "Do you enjoy reading? What book do you recommend?",
+            "What do you usually do on weekends?",
+            "If you could have any superpower, what would it be?",
+            "What is your favorite food or restaurant in town?"
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateChapterView();
+            startGlobalTimer();
+            loadSavedData();
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') nextChapter();
+                if (e.key === 'ArrowLeft') prevChapter();
+            });
+        });
+
+        function updateChapterView() {
+            document.querySelectorAll('.chapter').forEach((chap, idx) => {
+                if (idx === currentChapter) {
+                    chap.classList.add('active');
+                } else {
+                    chap.classList.remove('active');
+                }
+            });
+
+            const progressPct = (currentChapter / (totalChapters - 1)) * 100;
+            document.getElementById('progressBar').style.width = progressPct + '%';
+
+            const labels = ["Welcome", "About Me", "My City", "My Family", "Work & Education", "Hobbies", "Skills", "Goals", "Fun Facts", "Let's Talk", "Thank You"];
+            document.getElementById('chapterIndicator').textContent = `${labels[currentChapter]} (${currentChapter + 1}/${totalChapters})`;
+
+            document.getElementById('prevBtn').disabled = (currentChapter === 0);
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentChapter === totalChapters - 1) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'inline-flex';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextChapter() {
+            if (currentChapter < totalChapters - 1) {
+                currentChapter++;
+                updateChapterView();
+            }
+        }
+
+        function prevChapter() {
+            if (currentChapter > 0) {
+                currentChapter--;
+                updateChapterView();
+            }
+        }
+
+        function startGlobalTimer() {
+            const timerEl = document.getElementById('globalTimer');
+            setInterval(() => {
+                if (globalTimeSeconds > 0) {
+                    globalTimeSeconds--;
+                    const mins = Math.floor(globalTimeSeconds / 60).toString().padStart(2, '0');
+                    const secs = (globalTimeSeconds % 60).toString().padStart(2, '0');
+                    timerEl.textContent = `⏱️ ${mins}:${secs}`;
+                }
+            }, 1000);
+        }
+
+        function startTalkTimer() {
+            clearInterval(talkInterval);
+            talkTimeSeconds = 120;
+            const el = document.getElementById('talkTimer');
+            talkInterval = setInterval(() => {
+                if (talkTimeSeconds > 0) {
+                    talkTimeSeconds--;
+                    const mins = Math.floor(talkTimeSeconds / 60).toString().padStart(2, '0');
+                    const secs = (talkTimeSeconds % 60).toString().padStart(2, '0');
+                    el.textContent = `⏳ ${mins}:${secs}`;
+                } else {
+                    clearInterval(talkInterval);
+                    alert("⏰ Time is up! Change partners!");
+                }
+            }, 1000);
+        }
+
+        function checkQuiz(button, isCorrect, feedbackId) {
+            const parent = button.parentElement;
+            const buttons = parent.querySelectorAll('.quiz-option');
+            buttons.forEach(btn => btn.disabled = true);
+
+            const fb = document.getElementById(feedbackId + '-fb');
+
+            if (isCorrect) {
+                button.classList.add('correct');
+                fb.textContent = "🎉 Excellent! That is correct!";
+                fb.style.color = "var(--success)";
+            } else {
+                button.classList.add('wrong');
+                fb.textContent = "❌ Not quite! Try to review the correct option.";
+                fb.style.color = "var(--error)";
+            }
+        }
+
+        function saveAnswer(key, value) {
+            userData[key] = value;
+            try {
+                localStorage.setItem('englishClubData', JSON.stringify(userData));
+            } catch (e) {
+                console.warn('LocalStorage not writable');
+            }
+        }
+
+        function loadSavedData() {
+            for (let key in userData) {
+                const el = document.querySelector(`[onchange*="${key}"]`);
+                if (el) el.value = userData[key];
+            }
+        }
+
+        function selectStatus(card, status) {
+            document.querySelectorAll('.single-select').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            saveAnswer('relationshipStatus', status);
+        }
+
+        function toggleHobby(card, hobby) {
+            card.classList.toggle('selected');
+            if (hobby === 'Other') {
+                document.getElementById('otherHobbyInput').classList.toggle('hidden');
+            }
+            saveAnswer('selectedHobbies', Array.from(document.querySelectorAll('#chap-5 .check-card.selected')).map(c => c.textContent.trim()).join(', '));
+        }
+
+        function toggleSkill(card, skill) {
+            card.classList.toggle('selected');
+            saveAnswer('selectedSkills', Array.from(document.querySelectorAll('#chap-6 .check-card.selected')).map(c => c.textContent.trim()).join(', '));
+        }
+
+        function updateWordCount(textarea) {
+            const text = textarea.value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            document.getElementById('wordCountDisplay').textContent = `Words: ${words}`;
+            saveAnswer('job5Sentences', text);
+        }
+
+        function generateNextQuestion() {
+            const q = talkQuestions[Math.floor(Math.random() * talkQuestions.length)];
+            document.getElementById('randomQuestionText').textContent = q;
+        }
+
+        function submitFeedback() {
+            document.getElementById('thankYouAnimation').classList.remove('hidden');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function adjustFontSize() {
+            fontSizeLevel = (fontSizeLevel + 1) % 3;
+            if (fontSizeLevel === 0) document.documentElement.style.fontSize = '14px';
+            if (fontSizeLevel === 1) document.documentElement.style.fontSize = '16px';
+            if (fontSizeLevel === 2) document.documentElement.style.fontSize = '18px';
+        }
+
+        function exportData() {
+            let text = "=== ENGLISH CONVERSATION CLUB - SUMMARY ===\n\n";
+            for (let key in userData) {
+                text += `${key}: ${userData[key]}\n`;
+            }
+            const blob = new Blob([text], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'english_club_responses.txt';
+            a.click();
+        }
+    </script>
+</body>
+</html>
+
