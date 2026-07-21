@@ -3,13 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards com Pronúncia</title>
+  <title>English Conversation Club - Presentation</title>
   <style>
     :root {
       --primary: #4a7c59;
+      --primary-dark: #386144;
       --bg: #f9f8f3;
       --card-bg: #ffffff;
       --text: #2c3e50;
+      --accent: #eef5f0;
+      --accent-hover: #d8ebd9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
@@ -19,25 +28,112 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       min-height: 100vh;
-      margin: 0;
       padding: 20px;
     }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      max-width: 900px;
+    /* Cabeçalho */
+    header {
+      text-align: center;
+      margin-bottom: 20px;
     }
 
-    /* Estrutura do Flashcard 3D */
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    header p {
+      color: #666;
+      font-size: 1rem;
+    }
+
+    /* Container dos Slides */
+    .slide-container {
+      width: 100%;
+      max-width: 900px;
+      min-height: 520px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .slide p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #4a5568;
+    }
+
+    /* Painel de Controles de Áudio Globais */
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      background: var(--bg);
+      padding: 8px 16px;
+      border-radius: 20px;
+      width: fit-content;
+    }
+
+    .speed-btn {
+      background: #e2e8f0;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .speed-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Grid de Flashcards */
+    .flashcard-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
     .flashcard {
-      background-color: transparent;
-      width: 260px;
-      height: 180px;
+      width: 220px;
+      height: 150px;
       perspective: 1000px;
       cursor: pointer;
     }
@@ -50,7 +146,7 @@
       transition: transform 0.6s ease;
       transform-style: preserve-3d;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     }
 
     .flashcard.flipped .flashcard-inner {
@@ -68,10 +164,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      box-sizing: border-box;
+      padding: 15px;
       background-color: var(--card-bg);
-      border: 1px solid #e2e8f0;
+      border: 1px solid #cbd5e1;
     }
 
     .flashcard-front {
@@ -85,104 +180,325 @@
     }
 
     .word {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .translation {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 500;
     }
 
-    /* Botão de Áudio */
     .audio-btn {
-      background: #eef5f0;
+      background: var(--accent);
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 8px;
       transition: background 0.2s, transform 0.1s;
     }
 
     .audio-btn:hover {
-      background: #d8ebd9;
+      background: var(--accent-hover);
       transform: scale(1.05);
     }
 
-    .audio-btn:active {
-      transform: scale(0.95);
+    /* Formulário de Feedback */
+    .feedback-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Controles de Navegação dos Slides */
+    .navigation-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .nav-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background-color: var(--primary-dark);
+    }
+
+    .slide-indicator {
+      font-size: 0.9rem;
+      color: #64748b;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
-  <h1>Vocabulary Flashcards</h1>
+  <header>
+    <h1>English Conversation Club</h1>
+    <p>Interactive Study Slides & Vocabulary</p>
+  </header>
 
-  <div class="container" id="flashcard-container">
-    <!-- Os cards serão gerados dinamicamente via JS -->
-  </div>
+  <main class="slide-container">
+    
+    <!-- SLIDE 1: Boas-vindas -->
+    <div class="slide active">
+      <h2>Welcome to the Club! 👋</h2>
+      <p>Este guia interativo foi desenvolvido para praticar conversação e expandir seu vocabulário em inglês de forma simples e intuitiva.</p>
+      <p>Nos próximos slides, você encontrará flashcards com áudio nativo para treinar sua pronúncia e escuta.</p>
+    </div>
+
+    <!-- SLIDE 2: Vocabulary - Work -->
+    <div class="slide">
+      <h2>Chapter 1: Work & Career 💼</h2>
+      <p>Clique no cartão para ver a tradução e use o ícone de áudio 🔊 para ouvir a pronúncia em inglês.</p>
+      
+      <div class="audio-controls">
+        <span>Velocidade:</span>
+        <button class="speed-btn active" onclick="setSpeed(1.0, this)">Normal (1.0x)</button>
+        <button class="speed-btn" onclick="setSpeed(0.65, this)">Lenta (0.65x)</button>
+      </div>
+
+      <div class="flashcard-grid">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div class="word">Schedule</div>
+              <button class="audio-btn" onclick="speakWord(event, 'Schedule')" title="Ouvir">🔊</button>
+            </div>
+            <div class="flashcard-back">
+              <div class="translation">Cronograma / Horário</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div class="word">Deadline</div>
+              <button class="audio-btn" onclick="speakWord(event, 'Deadline')" title="Ouvir">🔊</button>
+            </div>
+            <div class="flashcard-back">
+              <div class="translation">Prazo final</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div class="word">Meeting</div>
+              <button class="audio-btn" onclick="speakWord(event, 'Meeting')" title="Ouvir">🔊</button>
+            </div>
+            <div class="flashcard-back">
+              <div class="translation">Reunião</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Vocabulary - Education -->
+    <div class="slide">
+      <h2>Chapter 2: Education & Learning 🎓</h2>
+      <p>Expanda seu vocabulário relacionado aos estudos e aprendizado contínuo.</p>
+
+      <div class="audio-controls">
+        <span>Velocidade:</span>
+        <button class="speed-btn active" onclick="setSpeed(1.0, this)">Normal (1.0x)</button>
+        <button class="speed-btn" onclick="setSpeed(0.65, this)">Lenta (0.65x)</button>
+      </div>
+
+      <div class="flashcard-grid">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div class="word">Degree</div>
+              <button class="audio-btn" onclick="speakWord(event, 'Degree')" title="Ouvir">🔊</button>
+            </div>
+            <div class="flashcard-back">
+              <div class="translation">Diploma / Grau acadêmico</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div class="word">Research</div>
+              <button class="audio-btn" onclick="speakWord(event, 'Research')" title="Ouvir">🔊</button>
+            </div>
+            <div class="flashcard-back">
+              <div class="translation">Pesquisa</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div class="word">Assignment</div>
+              <button class="audio-btn" onclick="speakWord(event, 'Assignment')" title="Ouvir">🔊</button>
+            </div>
+            <div class="flashcard-back">
+              <div class="translation">Tarefa / Trabalho</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Feedback -->
+    <div class="slide">
+      <h2>Feedback & Evaluation 📝</h2>
+      <p>Envie sua avaliação ou sugestão para melhorarmos os próximos encontros do clube.</p>
+
+      <form class="feedback-form" onsubmit="handleFeedback(event)">
+        <div class="form-group">
+          <label for="name">Seu Nome:</label>
+          <input type="text" id="name" required placeholder="Digite seu nome">
+        </div>
+        <div class="form-group">
+          <label for="level">Como avalia a facilidade do conteúdo?</label>
+          <select id="level">
+            <option value="easy">Muito Fácil</option>
+            <option value="medium" selected>Ideal</option>
+            <option value="hard">Desafiador</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comments">Comentários ou dúvidas:</label>
+          <textarea id="comments" rows="3" placeholder="Escreva aqui..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Enviar Feedback</button>
+      </form>
+    </div>
+
+    <!-- Barra de Navegação Inferior -->
+    <div class="navigation-controls">
+      <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">Anterior</button>
+      <span class="slide-indicator" id="slide-indicator">Slide 1 de 4</span>
+      <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Próximo</button>
+    </div>
+
+  </main>
 
   <script>
-    // Lista de palavras de exemplo
-    const vocabulary = [
-      { word: "Family", translation: "Família" },
-      { word: "Work", translation: "Trabalho" },
-      { word: "Education", translation: "Educação" },
-      { word: "Schedule", translation: "Cronograma / Horário" }
-    ];
+    // Controle dos Slides
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const slideIndicator = document.getElementById('slide-indicator');
 
-    // Função para emitir o som usando a Web Speech API
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === slides.length - 1;
+      slideIndicator.textContent = `Slide ${currentSlide + 1} de ${slides.length}`;
+    }
+
+    function changeSlide(direction) {
+      currentSlide += direction;
+      updateSlides();
+    }
+
+    // Web Speech API (Síntese de Voz)
+    let currentSpeechRate = 1.0;
+
+    function setSpeed(rate, buttonElement) {
+      currentSpeechRate = rate;
+      const controls = buttonElement.parentElement;
+      controls.querySelectorAll('.speed-btn').forEach(btn => btn.classList.remove('active'));
+      buttonElement.classList.add('active');
+    }
+
     function speakWord(event, text) {
-      // Impede que o clique no botão de áudio vire o card
-      event.stopPropagation();
+      event.stopPropagation(); // Evita virar o flashcard ao clicar no som
 
       if ('speechSynthesis' in window) {
-        // Cancela áudios anteriores pendentes para não acumular
-        window.speechSynthesis.cancel();
+        window.speechSynthesis.cancel(); // Interrompe áudios em andamento
 
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US'; // Sotaque em inglês norte-americano
-        utterance.rate = 0.9;     // Velocidade levemente reduzida para facilitar o aprendizado
+        utterance.lang = 'en-US';
+        utterance.rate = currentSpeechRate;
 
         window.speechSynthesis.speak(utterance);
       } else {
-        alert("Seu navegador não suporta a API de voz.");
+        alert("Seu navegador não suporta síntese de voz.");
       }
     }
 
-    // Renderizar os flashcards
-    const container = document.getElementById('flashcard-container');
+    // Formulário de Feedback
+    function handleFeedback(e) {
+      e.preventDefault();
+      alert("Obrigado pelo seu feedback! Ele foi enviado com sucesso.");
+      e.target.reset();
+    }
 
-    vocabulary.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'flashcard';
-      
-      // Clique no card vira o flashcard
-      card.onclick = () => card.classList.toggle('flipped');
-
-      card.innerHTML = `
-        <div class="flashcard-inner">
-          <div class="flashcard-front">
-            <div class="word">${item.word}</div>
-            <button class="audio-btn" onclick="speakWord(event, '${item.word}')" title="Ouvir pronúncia">
-              🔊
-            </button>
-          </div>
-          <div class="flashcard-back">
-            <div class="translation">${item.translation}</div>
-          </div>
-        </div>
-      `;
-
-      container.appendChild(card);
-    });
+    // Inicialização
+    updateSlides();
   </script>
 </body>
 </html>
