@@ -1,185 +1,1421 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Study Booklet</title>
+    <title>English Conversation Club — Presentation Mode</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
+        /* ==========================================
+           1. CORE STYLES & PASTEL PINK PALETTE
+           ========================================== */
         :root {
-            --primary-color: #ffb6c1;
-            --secondary-color: #fff0f5;
-            --accent-color: #ff69b4;
-            --text-color: #4a4a4a;
-            --card-bg: #ffffff;
+            --primary: #EC407A;
+            --primary-grad: linear-gradient(135deg, #F48FB1 0%, #EC407A 100%);
+            --bg-grad: linear-gradient(180deg, #FCE4EC 0%, #F8BBD0 100%);
+            --card-bg: #FFFFFF;
+            --text-primary: #332228;
+            --text-secondary: #7A656C;
+            --btn-bg: #FFF0F5;
+            --btn-hover: #FCE4EC;
+            --success: #00C853;
+            --error: #FF3B30;
+            --border-radius: 24px;
+            --border-color: #F8D7E3;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-size-base: 16px;
+            --shadow: 0px 10px 30px rgba(236, 64, 122, 0.12);
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
+        body.dark-mode {
+            --bg-grad: linear-gradient(180deg, #2A1A20 0%, #1F1217 100%);
+            --card-bg: #2B2025;
+            --text-primary: #FDF0F5;
+            --text-secondary: #D2B8C3;
+            --btn-bg: #3B2A31;
+            --btn-hover: #4A363E;
+            --border-color: #4A363E;
+            --shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            min-height: 100vh;
+            font-size: var(--font-size-base);
+            background: var(--bg-grad);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+
+        /* AJUSTE DESKTOP: Max-width ampliado para 900px */
+        .app-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 40px rgba(236, 64, 122, 0.15);
+            transition: max-width 0.3s ease;
+        }
+
+        /* ==========================================
+           2. HEADER & CONTROL BAR
+           ========================================== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kwai-logo {
+            background: var(--primary-grad);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tools-menu {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .tool-btn {
+            background: var(--btn-bg);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .tool-btn:active {
+            transform: scale(0.9);
+        }
+
+        .global-timer {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--btn-bg);
+            padding: 6px 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .slide-jump-select {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background-color: var(--btn-bg);
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: var(--btn-bg);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-grad);
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+
+        /* ==========================================
+           3. DIDACTIC COMPONENTS & IMAGES
+           ========================================== */
+        main {
+            flex: 1;
             padding: 20px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-        }
-
-        /* Redimensionamento e Ajuste para Desktop */
-        .container {
-            width: 100%;
-            max-width: 900px; /* Largura ideal para telas desktop */
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        h1, h2, h3 {
-            color: var(--accent-color);
+            padding-bottom: 90px;
         }
 
         .chapter {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px dashed var(--primary-color);
-            position: relative;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            width: 100%;
         }
 
-        /* Imagens Responsivas */
+        .chapter.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .badge {
+            background: var(--primary-grad);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ESTILO PARA IMAGENS DOS CAPÍTULOS */
         .chapter-img {
             width: 100%;
-            max-height: 450px;
+            max-height: 400px;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 15px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 18px;
+            border: 2px solid var(--border-color);
+            margin: 12px 0 18px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
-        /* Estilo para Mascotes Kawaii */
+        /* ANIMATED MASCOTS */
         .kawaii-mascot {
-            font-size: 2.5rem;
             display: inline-block;
-            animation: bounce 2s infinite alternate;
-            margin-left: 10px;
+            font-size: 1.5rem;
+            margin-left: 6px;
+            animation: bounce 2s infinite alternate ease-in-out;
         }
 
         @keyframes bounce {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-8px); }
+            100% { transform: translateY(-6px); }
         }
 
-        .card {
-            background-color: #fff9fb;
-            border-left: 4px solid var(--accent-color);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
+        h1, h2, h3 {
+            color: var(--text-primary);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 12px;
         }
 
-        .qa-grid {
+        h1 { font-size: 1.8rem; }
+        h2 { font-size: 1.4rem; }
+        h3 { font-size: 1.15rem; }
+
+        p, li {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pattern-box {
+            background: linear-gradient(135deg, rgba(236, 64, 122, 0.08) 0%, rgba(244, 143, 177, 0.15) 100%);
+            border: 2px dashed var(--primary);
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin: 14px 0;
+        }
+
+        .pattern-box header {
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+            border-radius: 0;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .pattern-formula {
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: var(--card-bg);
+            padding: 8px 12px;
+            border-radius: 10px;
+            display: block;
+            margin-top: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .flashcard {
+            background: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .flashcard:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .flashcard .front {
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .flashcard .back {
+            display: none;
+            font-size: 0.82rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .flashcard.flipped {
+            background: var(--btn-hover);
+            border-color: var(--primary);
+        }
+
+        .flashcard.flipped .back {
+            display: block;
+        }
+
+        .speaker-box {
+            background: rgba(0, 200, 83, 0.08);
+            border-left: 4px solid var(--success);
+            padding: 12px 14px;
+            border-radius: 0 12px 12px 0;
+            margin: 12px 0;
+            font-size: 0.85rem;
+        }
+
+        .speaker-box strong {
+            color: var(--success);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .comparison-box {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin: 12px 0;
+            font-size: 0.85rem;
         }
 
-        @media (max-width: 600px) {
-            .container { padding: 20px; }
-            .qa-grid { grid-template-columns: 1fr; }
+        .comp-item {
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .comp-item.wrong {
+            background: #FFEBEB;
+            color: #CC2118;
+            border: 1px solid #FFC1C1;
+        }
+
+        .comp-item.right {
+            background: #E6F9EE;
+            color: #008537;
+            border: 1px solid #B3E8C7;
+        }
+
+        .grammar-note {
+            background: #FFF8E1;
+            border: 1px solid #FFE082;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 14px 0;
+            font-size: 0.88rem;
+            color: #5D4037;
+        }
+
+        .grammar-note strong {
+            color: #E65100;
+        }
+
+        .section-box {
+            background: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 14px 0;
+        }
+
+        /* ==========================================
+           4. CONTROLS & INTERACTIVE ELEMENTS
+           ========================================== */
+        .btn {
+            width: 100%;
+            background-color: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover:not(:disabled) {
+            background-color: var(--btn-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary-grad);
+            color: white;
+            border: none;
+            box-shadow: 0 6px 18px rgba(236, 64, 122, 0.3);
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            background-color: var(--btn-bg);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: var(--primary);
+            background-color: var(--card-bg);
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .check-card {
+            background: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+
+        .check-card.selected {
+            border-color: var(--primary);
+            background: var(--btn-hover);
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           5. FOOTER & NAVIGATION
+           ========================================== */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            padding: 12px 20px;
+            box-shadow: 0 -4px 20px rgba(236, 64, 122, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            transition: max-width 0.3s ease;
+        }
+
+        .nav-btn {
+            flex: 1;
+            margin-bottom: 0;
+            padding: 12px;
+        }
+
+        /* RESPONSIVE LAYOUT */
+        @media (min-width: 768px) {
+            .app-container {
+                margin: 20px auto;
+                min-height: calc(100vh - 40px);
+                border-radius: 28px;
+            }
+
+            footer {
+                border-bottom-left-radius: 28px;
+                border-bottom-right-radius: 28px;
+            }
+
+            header {
+                padding: 16px 24px;
+                border-top-left-radius: 28px;
+                border-top-right-radius: 28px;
+            }
+
+            .card {
+                padding: 32px 28px;
+            }
+
+            .welcome-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .flashcard-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .option-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-
-    <!-- CHAPTER 2 -->
-    <section class="chapter" id="chapter2">
-        <h2>Chapter 2: My City — Blumenau <span class="kawaii-mascot">🏰✨</span></h2>
-        <!-- Foto de Blumenau -->
-        <img src="blumenau.jpg" alt="Blumenau" class="chapter-img">
-        <p>Welcome to Blumenau! A charming city known for its German heritage, beautiful architecture, and vibrant culture.</p>
-    </section>
-
-    <!-- CHAPTER 3 -->
-    <section class="chapter" id="chapter3">
-        <h2>Chapter 3: My Family <span class="kawaii-mascot">🐱💖</span></h2>
-        <!-- Foto da Família -->
-        <img src="Familia.jpg" alt="My Family" class="chapter-img">
-        <p>Family is where life begins and love never ends. Here is a glimpse of my lovely family.</p>
-    </section>
-
-    <!-- CHAPTER 4 -->
-    <section class="chapter" id="chapter4">
-        <h2>Chapter 4: Work & Education <span class="kawaii-mascot">🎓🐰</span></h2>
-        <!-- Foto Trabalho -->
-        <img src="trabalho.jpg" alt="Work and Education" class="chapter-img">
-
-        <div class="section-content">
-            <h3>Work (Trabalho / Profissional)</h3>
-            <p>Details about professional experiences, career paths, and daily responsibilities.</p>
-        </div>
-
-        <!-- Seção Purchasing vs. Procurement movida para o fim do Chapter 4 -->
-        <div class="card">
-            <h3>Purchasing vs. Procurement</h3>
-            <p><strong>Purchasing:</strong> The specific process of ordering and receiving goods and services (transactional focus).</p>
-            <p><strong>Procurement:</strong> The broader strategic process of identifying, shortlisting, selecting, and acquiring goods/services.</p>
-        </div>
-    </section>
-
-    <!-- CHAPTER 5 -->
-    <section class="chapter" id="chapter5">
-        <h2>Chapter 5: Hobbies & Free Time <span class="kawaii-mascot">🎮🐻</span></h2>
-        <!-- Foto Scooby Doo -->
-        <img src="scooby.jpg" alt="Scooby Doo - Hobbies" class="chapter-img">
-        <p>In my free time, I enjoy watching classic shows, relaxing, and exploring creative projects.</p>
-    </section>
-
-    <!-- CHAPTER 6 (REMOVIDO CONFORME SOLICITADO) -->
-
-    <!-- CHAPTER 7 -->
-    <section class="chapter" id="chapter7">
-        <h2>Chapter 7: Fun Facts & Favorites <span class="kawaii-mascot">🌭🐥</span></h2>
-        <!-- Foto Salsicha -->
-        <img src="salsicha.jpg" alt="Fun Facts & Sausage Plate" class="chapter-img">
-        <p>Here are some fun facts, favorite foods, and special moments!</p>
-    </section>
-
-    <!-- CHAPTER 9 (Antigo Chapter 10: Asking Questions) -->
-    <section class="chapter" id="chapter9">
-        <h2>Chapter 9: Asking Questions <span class="kawaii-mascot">❓🦊</span></h2>
-        <p>Learn how to ask common questions in everyday conversation.</p>
-
-        <!-- Nova Seção de Well-Being -->
-        <div class="card">
-            <h3>Well-Being Questions (Perguntas de Bem-Estar)</h3>
-            
-            <div class="qa-grid">
-                <div>
-                    <p><strong>How are you?</strong><br><em>(Como você está?)</em></p>
-                    <p><strong>How are you doing?</strong><br><em>(Como você vai? / Como estão as coisas?)</em></p>
-                    <p><strong>How's it going?</strong><br><em>(Como vão as coisas?)</em></p>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header>
+            <div class="header-top">
+                <div class="kwai-logo">
+                    <span>⚡</span> CONVERSATION CLUB
                 </div>
-                <div>
-                    <p><strong>Possible Answers (Possíveis Respostas):</strong></p>
-                    <ul>
-                        <li>I'm doing great, thanks! <em>(Estou ótimo/a, obrigado/a!)</em></li>
-                        <li>Pretty good! And you? <em>(Muito bem! E você?)</em></li>
-                        <li>Not bad! <em>(Nada mal!)</em></li>
-                        <li>I'm a bit tired today. <em>(Estou um pouco cansado/a hoje.)</em></li>
-                    </ul>
+                <div class="tools-menu">
+                    <div class="global-timer" id="globalTimer">⏱️ 40:00</div>
+                    <button class="tool-btn" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">🌙</button>
+                    <button class="tool-btn" onclick="adjustFontSize()" title="Adjust Font Size">🅰️</button>
+                    <button class="tool-btn" onclick="exportData()" title="Export Answers">💾</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CHAPTER 10 (Antigo Chapter 9) -->
-    <section class="chapter" id="chapter10">
-        <h2>Chapter 10: Grammar & Practice <span class="kawaii-mascot">📚🐼</span></h2>
-        <p>Content previously in Chapter 9 moved here to support ongoing grammar exercises and practice routines.</p>
-    </section>
+            <select class="slide-jump-select" id="slideJumpSelect" onchange="jumpToChapter(this.value)">
+                <option value="0">Slide 1: Welcome & Intro</option>
+                <option value="1">Slide 2: Chapter 1 — About Me</option>
+                <option value="2">Slide 3: Chapter 2 — My City</option>
+                <option value="3">Slide 4: Chapter 3 — My Family</option>
+                <option value="4">Slide 5: Chapter 4 — Work & Education</option>
+                <option value="5">Slide 6: Chapter 5 — Hobbies & Free Time</option>
+                <option value="6">Slide 7: Chapter 7 — Fun Facts & Favorites</option>
+                <option value="7">Slide 8: Chapter 9 — Asking Questions</option>
+                <option value="8">Slide 9: Chapter 10 — Let's Talk!</option>
+                <option value="9">Slide 10: Chapter 11 — Thank You</option>
+            </select>
 
-</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </header>
 
+        <!-- MAIN CONTENT -->
+        <main id="mainContent">
+
+            <!-- SLIDE 1: WELCOME -->
+            <section class="chapter active" id="chap-0">
+                <div class="card">
+                    <div class="welcome-grid">
+                        <div class="welcome-text">
+                            <span class="badge">👋 Presentation Start</span>
+                            <h1>Hello & Welcome! <span class="kawaii-mascot">✨🐰</span></h1>
+                            <p style="margin-top: 10px; font-size: 1.05rem;">
+                                Welcome to today's <strong>English Conversation Club</strong> presentation!
+                            </p>
+                            <p>Aprendendo juntas, um passo de cada vez. Small steps, big progress!</p>
+                            
+                            <div class="speaker-box" style="margin-top: 15px;">
+                                <strong>🎙️ Speaker Tip:</strong>
+                                Use as <strong>setas do teclado (← →)</strong> ou o <strong>menu acima</strong> para navegar entre os capítulos!
+                            </div>
+
+                            <button class="btn btn-primary" onclick="nextChapter()" style="margin-top: 15px;">
+                                Start Presentation 🚀
+                            </button>
+                        </div>
+                        <div class="welcome-image-container">
+                            <img src="welcome-banner.png" alt="Clube de Conversação em Inglês" class="chapter-img" style="margin: 0;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: CHAPTER 1 — ABOUT ME -->
+            <section class="chapter" id="chap-1">
+                <div class="card">
+                    <span class="badge">🌎 Chapter 1</span>
+                    <h2>About Me <span class="kawaii-mascot">🌸🐱</span></h2>
+                    <p>Hello! My name is <strong>Sara Reis</strong>. I am <strong>24 years old</strong> and I live in Blumenau, Brazil.</p>
+
+                    <div class="pattern-box">
+                        <header>💡 Useful Pattern (Introductions)</header>
+                        <div>"My name is <strong>[Name]</strong>, I am <strong>[Age]</strong> years old, and I work as <strong>[Role]</strong>."</div>
+                        <div class="pattern-formula">I am from [City], [State].</div>
+                    </div>
+
+                    <h3>⚠️ Common Pitfall: Stating Your Age</h3>
+                    <div class="comparison-box">
+                        <div class="comp-item wrong">❌ I have 24 years old.</div>
+                        <div class="comp-item right">✅ I am 24 years old.</div>
+                    </div>
+
+                    <div class="grammar-note">
+                        <strong>📌 Dica Importante (Age vs. Years):</strong><br>
+                        Em inglês, a palavra <strong>Age</strong> se refere à <em>idade</em> (conceito), enquanto <strong>Years</strong> refere-se aos <em>anos</em> de vida decorridos. Para dizer a sua idade, usamos o verbo <strong>TO BE (I am)</strong>!
+                    </div>
+
+                    <p style="margin-top: 16px; font-weight: 700;">Vocabulary Flashcards:</p>
+                    <div class="flashcard-grid">
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🏠 Live</div>
+                            <div class="back">Viver / Morar</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🏘️ City</div>
+                            <div class="back">Cidade</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🌎 Country</div>
+                            <div class="back">País</div>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>1. What is your name?</p>
+                    <input type="text" placeholder="e.g. My name is... / I am..." onchange="saveAnswer('userName', this.value)">
+
+                    <p style="margin-top: 10px;">2. How old are you?</p>
+                    <input type="text" placeholder="e.g. I am 23 years old" onchange="saveAnswer('userAge', this.value)">
+                </div>
+            </section>
+
+            <!-- SLIDE 3: CHAPTER 2 — MY CITY (BLUMENAU) -->
+            <section class="chapter" id="chap-2">
+                <div class="card">
+                    <span class="badge">🏡 Chapter 2</span>
+                    <h2>My City — Blumenau <span class="kawaii-mascot">🏰✨</span></h2>
+                    
+                    <!-- FOTO BLUMENAU -->
+                    <img src="blumenau.jpg" alt="Blumenau City" class="chapter-img">
+
+                    <p>I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest, German architecture, beautiful nature, and high quality of life.</p>
+
+                    <!-- SEÇÃO EXPLICATIVA: I'M FROM vs I LIVE IN -->
+                    <div class="grammar-note" style="margin: 16px 0;">
+                        <strong>💡 Qual a diferença entre "I'm from" e "I live in"?</strong><br>
+                        • <strong>I'm from... (Eu sou de...):</strong> Refere-se ao seu local de origem ou onde você nasceu/cresceu. Ex: <em>"I'm from Rio de Janeiro."</em><br>
+                        • <strong>I live in... (Eu moro em...):</strong> Refere-se ao seu local de residência atual. Ex: <em>"I live in Blumenau."</em>
+                    </div>
+
+                    <div class="pattern-box">
+                        <header>💡 Sentence Patterns (Describing a City)</header>
+                        <div>"My city is famous for <strong>[Noun / Activity]</strong>."</div>
+                        <div class="pattern-formula">[City] is [Adjective 1] and [Adjective 2].</div>
+                    </div>
+
+                    <p style="margin-top: 16px; font-weight: 700;">City Vocabulary Flashcards:</p>
+                    <div class="flashcard-grid">
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🍻 Heritage / Culture</div>
+                            <div class="back">Herança / Cultura</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🌲 Nature & Parks</div>
+                            <div class="back">Natureza e Parques</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🏰 Architecture</div>
+                            <div class="back">Arquitetura</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🏙️ Downtown</div>
+                            <div class="back">Centro da cidade</div>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>1. Where are you from? / Where do you live?</p>
+                    <input type="text" placeholder="e.g. I am from... / I live in..." onchange="saveAnswer('userOriginAndCity', this.value)">
+
+                    <p style="margin-top: 10px;">2. Describe your city using two adjectives:</p>
+                    <input type="text" placeholder="e.g. Beautiful and vibrant" onchange="saveAnswer('cityAdjectives', this.value)">
+                </div>
+            </section>
+
+            <!-- SLIDE 4: CHAPTER 3 — MY FAMILY -->
+            <section class="chapter" id="chap-3">
+                <div class="card">
+                    <span class="badge">👨‍👩‍👧 Chapter 3</span>
+                    <h2>My Family <span class="kawaii-mascot">💖🧸</span></h2>
+
+                    <!-- FOTO FAMILIA -->
+                    <img src="Familia.jpg" alt="My Family" class="chapter-img">
+
+                    <p style="font-weight: 700;">Family Vocabulary Flashcards:</p>
+                    <div class="flashcard-grid">
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👨‍👩‍👦 Parents</div>
+                            <div class="back">Pais (Mãe e Pai)</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👥 Relatives</div>
+                            <div class="back">Parentes</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👦 Siblings</div>
+                            <div class="back">Irmãos/Irmãs</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💍 Spouse</div>
+                            <div class="back">Cônjuge</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👦 Brother</div>
+                            <div class="back">Irmão</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👧 Sister</div>
+                            <div class="back">Irmã</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👨 Husband</div>
+                            <div class="back">Marido</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👩 Wife</div>
+                            <div class="back">Esposa</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👧 Daughter</div>
+                            <div class="back">Filha</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👦 Son</div>
+                            <div class="back">Filho</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👶 Child / Children</div>
+                            <div class="back">Criança / Crianças</div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO ESPECIAL - ENGAGED -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">💍 Getting Married (Engaged)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💍 Fiancé / Fiancée</div>
+                                <div class="back">Noivo / Noiva (Noivado)</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👰 Bride</div>
+                                <div class="back">Noiva (no casamento)</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🤵 Groom</div>
+                                <div class="back">Noivo (no casamento)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 Relationship Status</h3>
+                    <p style="font-size: 0.85rem; margin-bottom: 8px;">Clique nos cards para ver a tradução:</p>
+                    <div class="flashcard-grid">
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">👤 Single</div>
+                            <div class="back">Solteiro(a)</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💖 In a Relationship</div>
+                            <div class="back">Em um relacionamento</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💍 Engaged</div>
+                            <div class="back">Noivo(a)</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">💒 Married</div>
+                            <div class="back">Casado(a)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: CHAPTER 4 — WORK & EDUCATION -->
+            <section class="chapter" id="chap-4">
+                <div class="card">
+                    <span class="badge">💼 Chapter 4</span>
+                    <h2>Work & Education <span class="kawaii-mascot">💼🎓</span></h2>
+
+                    <!-- FOTO TRABALHO -->
+                    <img src="trabalho.jpg" alt="Work and Education" class="chapter-img">
+
+                    <p>Focusing on daily routines, procurement/purchasing, administration, and studies.</p>
+
+                    <div class="pattern-box">
+                        <header>💡 Formula Patterns</header>
+                        <div>"I am responsible for <strong>[Verb + ING]</strong>..."</div>
+                        <div class="pattern-formula">I work / study at [Company / University].</div>
+                    </div>
+
+                    <!-- CATEGORIA EDUCATION -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🎓 Education (Estudos / Educação)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎓 Bachelor's Degree</div>
+                                <div class="back">Bacharelado / Graduação</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎒 Student</div>
+                                <div class="back">Estudante / Aluno</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📅 Semester</div>
+                                <div class="back">Semestre</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🏛️ University</div>
+                                <div class="back">Universidade</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📚 Major / Course</div>
+                                <div class="back">Curso / Especialização</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORIA WORK -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">💼 Work (Trabalho / Profissional)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👔 Assistant</div>
+                                <div class="back">Assistente</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📊 Analyst</div>
+                                <div class="back">Analista</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🛒 Buyer</div>
+                                <div class="back">Comprador</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🤝 Supplier</div>
+                                <div class="back">Fornecedor</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📄 Purchase Order</div>
+                                <div class="back">Pedido de Compra</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📈 Spreadsheets</div>
+                                <div class="back">Planilhas</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO MOVIDA PARA O FIM DO CAPÍTULO: PURCHASING VS PROCUREMENT -->
+                    <div class="grammar-note" style="margin-top: 20px;">
+                        <strong>💡 Purchasing vs. Procurement:</strong><br>
+                        • <strong>Purchasing (Compras):</strong> Focado no ato transacional de comprar bens/serviços (pedidos, pagamento, recebimento).<br>
+                        • <strong>Procurement (Aquisições / Aprovisionamento):</strong> Um processo mais estratégico que inclui pesquisa de fornecedores, negociação de contratos e gestão de riscos.
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>What do you do professionally or what are you studying?</p>
+                    <input type="text" placeholder="e.g. I study IT / I work in administration" onchange="saveAnswer('userJobDetails', this.value)">
+                </div>
+            </section>
+
+            <!-- SLIDE 6: CHAPTER 5 — HOBBIES & FREE TIME -->
+            <section class="chapter" id="chap-5">
+                <div class="card">
+                    <span class="badge">🎨 Chapter 5</span>
+                    <h2>Hobbies & Free Time <span class="kawaii-mascot">🐶🎬</span></h2>
+
+                    <!-- FOTO SCOOBY DOO -->
+                    <img src="scooby.jpg" alt="Scooby Doo Hobbies" class="chapter-img">
+
+                    <div class="pattern-box">
+                        <header>💡 Useful Pattern (Hobbies)</header>
+                        <div>"In my free time, I really enjoy <strong>[Verb + ING]</strong>."</div>
+                        <div class="pattern-formula">I am passionate about [Hobby].</div>
+                    </div>
+
+                    <h3>👉 Select Your Favorite Hobbies</h3>
+                    <div class="option-grid">
+                        <div class="check-card" onclick="toggleOption(this, 'Reading')">📚 Reading</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Traveling')">✈️ Traveling</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Music')">🎵 Music</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Movies')">🎬 Movies</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Cooking')">🍳 Cooking</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Sports')">⚽ Sports</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Photography')">📷 Photography</div>
+                        <div class="check-card" onclick="toggleOption(this, 'Crafting/Art')">🎨 Crafting / Art</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: CHAPTER 7 — FUN FACTS & FAVORITES -->
+            <section class="chapter" id="chap-6">
+                <div class="card">
+                    <span class="badge">⭐ Chapter 7</span>
+                    <h2>Fun Facts & Favorites <span class="kawaii-mascot">🌭✨</span></h2>
+
+                    <!-- FOTO SALSICHA COM PRATO -->
+                    <img src="salsicha.jpg" alt="Salsicha e Prato" class="chapter-img">
+
+                    <p style="font-weight: 700;">Click to reveal cards:</p>
+                    <div class="flashcard-grid">
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🎬 Favorite Movie</div>
+                            <div class="back">Filme Favorito</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🍂 Favorite Season</div>
+                            <div class="back">Estação Favorita</div>
+                        </div>
+                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                            <div class="front">🍕 Favorite Food</div>
+                            <div class="back">Comida Favorita</div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: ESTAÇÕES DO ANO -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🍂 Seasons of the Year (Estações do Ano)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🌸 Spring</div>
+                                <div class="back">Primavera</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">☀️ Summer</div>
+                                <div class="back">Verão</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍁 Autumn / Fall</div>
+                                <div class="back">Outono</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">❄️ Winter</div>
+                                <div class="back">Inverno</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: ESTILOS DE FILME -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🎬 Movie Genres (Estilos de Filme)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">😂 Comedy</div>
+                                <div class="back">Comédia</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎨 Animation</div>
+                                <div class="back">Animação</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👻 Horror / Terror</div>
+                                <div class="back">Terror / Horror</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💥 Action</div>
+                                <div class="back">Ação</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💖 Romance</div>
+                                <div class="back">Romance</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🚀 Sci-Fi</div>
+                                <div class="back">Ficção Científica</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: COMIDAS E BEBIDAS -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🍕 Favorite Foods & Drinks (Comidas e Bebidas)</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍕 Pizza</div>
+                                <div class="back">Pizza</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍝 Spaghetti</div>
+                                <div class="back">Espaguete</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍔 Burger</div>
+                                <div class="back">Hambúrguer</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍣 Sushi</div>
+                                <div class="back">Sushi</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🦐 Seafood</div>
+                                <div class="back">Frutos do Mar</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍦 Ice Cream</div>
+                                <div class="back">Sorvete</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍫 Chocolate</div>
+                                <div class="back">Chocolate</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">☕ Coffee</div>
+                                <div class="back">Café</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍵 Tea</div>
+                                <div class="back">Chá</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">⚡ Energy Drink</div>
+                                <div class="back">Energético</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>1. What is your favorite season?</p>
+                    <input type="text" placeholder="e.g. My favorite season is Autumn..." onchange="saveAnswer('favSeason', this.value)">
+
+                    <p style="margin-top: 10px;">2. What is your favorite movie?</p>
+                    <input type="text" placeholder="e.g. My favorite movie is..." onchange="saveAnswer('favMovie', this.value)">
+
+                    <p style="margin-top: 10px;">3. What is your favorite movie genre?</p>
+                    <input type="text" placeholder="e.g. I love Comedy and Romance..." onchange="saveAnswer('favGenre', this.value)">
+                </div>
+            </section>
+
+            <!-- SLIDE 8: CHAPTER 9 — ASKING QUESTIONS (Antigo Chapter 10 agora aqui) -->
+            <section class="chapter" id="chap-7">
+                <div class="card">
+                    <span class="badge">❓ Chapter 9</span>
+                    <h2>Asking Questions in English <span class="kawaii-mascot">🦊❓</span></h2>
+                    <p>Para manter uma conversa fluindo, fazer perguntas é essencial! Aqui estão as principais formas de perguntar:</p>
+
+                    <div class="pattern-box">
+                        <header>💡 Essential Question Formulas</header>
+                        <p style="margin-bottom: 6px;">• <strong>What is your name?</strong> (Qual é o seu nome?)</p>
+                        <p style="margin-bottom: 6px;">• <strong>How old are you?</strong> (Quantos anos você tem?)</p>
+                        <p style="margin-bottom: 6px;">• <strong>What do you do?</strong> (O que você faz? / Qual sua profissão?)</p>
+                        <p style="margin-bottom: 0;">• <strong>What do you like?</strong> (Do que você gosta?)</p>
+                    </div>
+
+                    <!-- NOVA SEÇÃO: PERGUNTAS DE BEM-ESTAR -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">😊 Well-Being Questions (Bem-Estar)</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 12px;">Perguntas para saber como a pessoa está e como responder:</p>
+                        
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">❓ How are you?</div>
+                                <div class="back">Como você está?</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">❓ How are you doing?</div>
+                                <div class="back">Como você vai? / Como estão as coisas?</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">❓ How is it going?</div>
+                                <div class="back">Como vão as coisas?</div>
+                            </div>
+                        </div>
+
+                        <div class="grammar-note" style="margin-top: 10px;">
+                            <strong>💬 Possible Answers (Possíveis Respostas):</strong><br>
+                            • <em>I'm doing great, thanks!</em> (Estou ótimo/a, obrigado/a!)<br>
+                            • <em>Pretty good! And you?</em> (Muito bem! E você?)<br>
+                            • <em>Not bad!</em> (Nada mal!)<br>
+                            • <em>A bit tired today, but good!</em> (Um pouco cansado/a hoje, mas bem!)
+                        </div>
+                    </div>
+
+                    <!-- DICA DE CONVERSAÇÃO -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">🗣️ Quick Follow-up Questions</h3>
+                        <p style="font-size: 0.9rem;">
+                            Quando alguém te fizer uma pergunta e você quiser devolver a mesma pergunta de forma rápida e natural, use:
+                        </p>
+                        <div class="flashcard-grid" style="margin-top: 10px;">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💬 And you?</div>
+                                <div class="back">E você?</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💬 How about you?</div>
+                                <div class="back">E quanto a você?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 PRACTICE</h3>
+                    <p>Escreva uma pergunta em inglês que você gostaria de fazer para a sua dupla:</p>
+                    <input type="text" placeholder="e.g. What do you like to do on weekends?" onchange="saveAnswer('userPracticeQuestion', this.value)">
+                </div>
+            </section>
+
+            <!-- SLIDE 9: CHAPTER 10 — LET'S TALK! (Antigo Chapter 9 agora aqui) -->
+            <section class="chapter" id="chap-8">
+                <div class="card" style="text-align: center;">
+                    <span class="badge">💬 Chapter 10</span>
+                    <h2>Let's Talk! <span class="kawaii-mascot">🎲🐼</span></h2>
+                    <p>Spin for a random question and practice speaking with a partner!</p>
+
+                    <div style="background: var(--btn-bg); padding: 20px; border-radius: 18px; margin: 15px 0; border: 2px dashed var(--primary);">
+                        <p id="randomQuestionText" style="font-size: 1.1rem; font-weight: 800; color: var(--primary); margin: 0;">
+                            Click below to generate a question!
+                        </p>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="generateNextQuestion()">
+                        🎲 Next Question
+                    </button>
+
+                    <div style="margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 10px;">
+                        <span style="font-weight: 700;">Challenge Timer:</span>
+                        <div class="global-timer" id="talkTimer">⏳ 02:00</div>
+                        <button class="btn" style="width: auto; padding: 6px 12px; margin: 0;" onclick="startTalkTimer()">Start</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: CHAPTER 11 — THANK YOU & SUMMARY -->
+            <section class="chapter" id="chap-9">
+                <div class="card" style="text-align: center;">
+                    <span class="badge">🎉 Chapter 11</span>
+                    <h2>Thank You & Summary <span class="kawaii-mascot">🎉💖</span></h2>
+                    <p style="font-size: 1.05rem; margin-top: 10px;">
+                        Great job completing today's English Conversation Club session!
+                    </p>
+
+                    <!-- FORMULÁRIO DE FEEDBACK ANÔNIMO INTEGRADO AO FORMSPREE -->
+                    <div style="text-align: left; margin-top: 20px;" class="section-box">
+                        <h3 style="color: var(--primary);">🔒 Feedback Anônimo</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">
+                            Sua resposta é totalmente anônima e enviada diretamente para a facilitadora.
+                        </p>
+
+                        <form action="https://formspree.io/f/xykrjveg" method="POST" id="feedbackForm" onsubmit="handleFeedbackSubmit(event)">
+                            
+                            <p style="font-size: 0.9rem; font-weight: 700; margin-top: 10px;">
+                                1. O que você achou da sessão?
+                            </p>
+                            <textarea name="oque_achou_da_sessao" rows="3" placeholder="Sua opinião sincera sobre a apresentação..." required></textarea>
+
+                            <p style="font-size: 0.9rem; font-weight: 700; margin-top: 10px;">
+                                2. O que você acha que poderia melhorar?
+                            </p>
+                            <textarea name="oque_pode_melhorar" rows="3" placeholder="Sugestões de melhoria..." required></textarea>
+
+                            <button type="submit" class="btn btn-primary" style="margin-top: 12px; width: 100%;">
+                                ✉️ Enviar Feedback Anônimo
+                            </button>
+                        </form>
+
+                        <!-- MENSAGEM DE SUCESSO -->
+                        <div id="feedbackSuccess" style="display: none; background: #E6F9EE; border: 1px solid #B3E8C7; color: #008537; padding: 12px; border-radius: 12px; text-align: center; margin-top: 12px; font-weight: 700;">
+                            ✅ Obrigado pelo feedback! Suas respostas foram enviadas anonimamente.
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="exportData()" style="margin-top: 18px; width: 100%;">
+                        💾 Save & Download Summary (.txt)
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER NAVIGATION -->
+        <footer>
+            <button class="btn nav-btn" id="prevBtn" onclick="prevChapter()" disabled>
+                ⬅️ Previous
+            </button>
+            <button class="btn btn-primary nav-btn" id="nextBtn" onclick="nextChapter()">
+                Next ➡️
+            </button>
+        </footer>
+    </div>
+
+    <!-- ==========================================
+       6. JAVASCRIPT LOGIC
+       ========================================== -->
+    <script>
+        let currentChapter = 0;
+        const totalChapters = 10;
+        let userData = {};
+
+        try {
+            userData = JSON.parse(localStorage.getItem('englishClubData') || '{}');
+        } catch (e) {
+            console.warn('LocalStorage unavailable');
+        }
+
+        let globalTimeSeconds = 40 * 60;
+        let talkTimeSeconds = 120;
+        let talkInterval = null;
+
+        const talkQuestions = [
+            "Where are you from?",
+            "What do you do for work or study?",
+            "Do you like traveling? What's your dream vacation?",
+            "What languages do you speak or want to learn?",
+            "What is your dream job?",
+            "What is your favorite movie of all time?",
+            "Do you enjoy reading? What book do you recommend?",
+            "What do you usually do on weekends?"
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateChapterView();
+            startGlobalTimer();
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space') nextChapter();
+                if (e.key === 'ArrowLeft') prevChapter();
+            });
+        });
+
+        function updateChapterView() {
+            document.querySelectorAll('.chapter').forEach((chap, idx) => {
+                chap.classList.toggle('active', idx === currentChapter);
+            });
+
+            const progressPct = (currentChapter / (totalChapters - 1)) * 100;
+            document.getElementById('progressBar').style.width = progressPct + '%';
+            document.getElementById('slideJumpSelect').value = currentChapter;
+
+            document.getElementById('prevBtn').disabled = (currentChapter === 0);
+            document.getElementById('nextBtn').style.display = (currentChapter === totalChapters - 1) ? 'none' : 'inline-flex';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function jumpToChapter(index) {
+            currentChapter = parseInt(index);
+            updateChapterView();
+        }
+
+        function nextChapter() {
+            if (currentChapter < totalChapters - 1) {
+                currentChapter++;
+                updateChapterView();
+            }
+        }
+
+        function prevChapter() {
+            if (currentChapter > 0) {
+                currentChapter--;
+                updateChapterView();
+            }
+        }
+
+        function startGlobalTimer() {
+            const timerEl = document.getElementById('globalTimer');
+            setInterval(() => {
+                if (globalTimeSeconds > 0) {
+                    globalTimeSeconds--;
+                    const mins = Math.floor(globalTimeSeconds / 60).toString().padStart(2, '0');
+                    const secs = (globalTimeSeconds % 60).toString().padStart(2, '0');
+                    timerEl.textContent = `⏱️ ${mins}:${secs}`;
+                }
+            }, 1000);
+        }
+
+        function startTalkTimer() {
+            clearInterval(talkInterval);
+            talkTimeSeconds = 120;
+            const el = document.getElementById('talkTimer');
+            talkInterval = setInterval(() => {
+                if (talkTimeSeconds > 0) {
+                    talkTimeSeconds--;
+                    const mins = Math.floor(talkTimeSeconds / 60).toString().padStart(2, '0');
+                    const secs = (talkTimeSeconds % 60).toString().padStart(2, '0');
+                    el.textContent = `⏳ ${mins}:${secs}`;
+                } else {
+                    clearInterval(talkInterval);
+                    alert("⏰ Time is up! Change partners!");
+                }
+            }, 1000);
+        }
+
+        function saveAnswer(key, value) {
+            userData[key] = value;
+            try {
+                localStorage.setItem('englishClubData', JSON.stringify(userData));
+            } catch (e) {}
+        }
+
+        function toggleOption(card, val) {
+            card.classList.toggle('selected');
+        }
+
+        function generateNextQuestion() {
+            const q = talkQuestions[Math.floor(Math.random() * talkQuestions.length)];
+            document.getElementById('randomQuestionText').textContent = q;
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function adjustFontSize() {
+            const current = document.documentElement.style.fontSize;
+            document.documentElement.style.fontSize = (current === '18px') ? '16px' : '18px';
+        }
+
+        async function handleFeedbackSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('feedbackSuccess').style.display = 'block';
+                } else {
+                    alert("Ocorreu um erro ao enviar o feedback. Tente novamente.");
+                }
+            } catch (error) {
+                alert("Ocorreu um erro de conexão ao enviar o feedback.");
+            }
+        }
+
+        function exportData() {
+            let text = "=== ENGLISH CONVERSATION CLUB - SUMMARY ===\n\n";
+            for (let key in userData) {
+                text += `${key}: ${userData[key]}\n`;
+            }
+            const blob = new Blob([text], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'presentation_summary.txt';
+            a.click();
+        }
+    </script>
 </body>
 </html>
