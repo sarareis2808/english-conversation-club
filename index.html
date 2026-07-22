@@ -220,6 +220,18 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
+        /* Classe específica para imagens exibidas inteiras sem cortes */
+        .chapter-img-contain {
+            width: 100%;
+            max-height: 280px;
+            object-fit: contain;
+            background-color: var(--btn-bg);
+            border-radius: 16px;
+            margin: 12px 0 16px 0;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
         .badge {
             background: var(--primary-grad);
             color: white;
@@ -690,7 +702,7 @@
                     <span class="badge">🏡 Chapter 2</span>
                     <h2>My City — Blumenau</h2>
                     
-                    <!-- FOTO BLUMENAU -->
+                    <!-- FOTO BLUMENAU: Ajustado para B maiúsculo como está no GitHub -->
                     <img src="Blumenau.jpg" alt="Blumenau" class="chapter-img">
 
                     <p>I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest, German architecture, beautiful nature, and high quality of life.</p>
@@ -744,8 +756,8 @@
                     <span class="badge">👨‍👩‍👧 Chapter 3</span>
                     <h2>My Family</h2>
 
-                    <!-- FOTO FAMILIA (Corrigida maiúscula 'Familia.jpg') -->
-                    <img src="Familia.jpg" alt="My Family" class="chapter-img">
+                    <!-- FOTO FAMILIA: F maiúsculo + classe contain para não cortar -->
+                    <img src="Familia.jpg" alt="My Family" class="chapter-img-contain">
 
                     <p style="font-weight: 700;">Family Vocabulary Flashcards:</p>
                     <div class="flashcard-grid">
@@ -845,8 +857,8 @@
                     <span class="badge">💼 Chapter 4</span>
                     <h2>Work & Education</h2>
 
-                    <!-- FOTO TRABALHO (Ajustada para object-fit: contain para não cortar) -->
-                    <img src="trabalho.jpg" alt="Work & Education" class="chapter-img" style="object-fit: contain; background-color: var(--btn-bg);">
+                    <!-- FOTO TRABALHO: classe contain para não cortar -->
+                    <img src="trabalho.jpg" alt="Work & Education" class="chapter-img-contain">
 
                     <p>Focusing on daily routines, procurement/purchasing, administration, and studies.</p>
 
@@ -914,7 +926,6 @@
                         </div>
                     </div>
 
-                    <!-- EXPLICATIVO MOVIDO PARA O FIM DO CHAPTER 4 -->
                     <div class="grammar-note" style="margin: 16px 0;">
                         <strong>💡 Purchasing vs. Procurement:</strong><br>
                         • <strong>Purchasing (Compras):</strong> Focado no ato transacional de comprar bens/serviços (pedidos, pagamento, recebimento).<br>
@@ -935,7 +946,7 @@
                     <span class="badge">🎨 Chapter 5</span>
                     <h2>Hobbies & Free Time</h2>
 
-                    <!-- FOTO SCOOBY (Corrigida extensão .png) -->
+                    <!-- FOTO SCOOBY: S maiúsculo ajustado conforme GitHub -->
                     <img src="Scooby.png" alt="Hobbies" class="chapter-img">
 
                     <div class="pattern-box">
@@ -964,7 +975,7 @@
                     <span class="badge">⭐ Chapter 6</span>
                     <h2>Fun Facts & Favorites</h2>
 
-                    <!-- FOTO SALSICHA (Corrigida extensão .png) -->
+                    <!-- FOTO SALSICHA: minúsculo mantido exatamente como no GitHub -->
                     <img src="salsicha.png" alt="Fun Facts" class="chapter-img">
 
                     <p style="font-weight: 700;">Click to reveal cards:</p>
@@ -1098,7 +1109,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 8: CHAPTER 7 — ASKING QUESTIONS IN ENGLISH (ANTIGO 10 INVERTIDO) -->
+            <!-- SLIDE 8: CHAPTER 7 — ASKING QUESTIONS IN ENGLISH -->
             <section class="chapter" id="chap-7">
                 <div class="card">
                     <span class="badge">❓ Chapter 7</span>
@@ -1113,7 +1124,7 @@
                         <p style="margin-bottom: 0;">• <strong>What do you like?</strong> (Do que você gosta?)</p>
                     </div>
 
-                    <!-- NOVA SEÇÃO: HOW ARE YOU & HOW YOU DOING -->
+                    <!-- GREETINGS -->
                     <div class="section-box">
                         <h3 style="color: var(--primary);">👋 Greetings: "How are you?" vs "How you doing?"</h3>
                         <p style="font-size: 0.9rem; margin-bottom: 10px;">
@@ -1173,7 +1184,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 9: CHAPTER 8 — LET'S TALK! (ANTIGO 9 INVERTIDO) -->
+            <!-- SLIDE 9: CHAPTER 8 — LET'S TALK! -->
             <section class="chapter" id="chap-8">
                 <div class="card" style="text-align: center;">
                     <span class="badge">💬 Chapter 8</span>
@@ -1231,7 +1242,6 @@
                             </button>
                         </form>
 
-                        <!-- MENSAGEM DE SUCESSO -->
                         <div id="feedbackSuccess" style="display: none; background: #E6F9EE; border: 1px solid #B3E8C7; color: #008537; padding: 12px; border-radius: 12px; text-align: center; margin-top: 12px; font-weight: 700;">
                             ✅ Obrigado pelo feedback! Suas respostas foram enviadas anonimamente.
                         </div>
@@ -1420,4 +1430,3 @@
     </script>
 </body>
 </html>
-
