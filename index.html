@@ -3,42 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Conversation Club — Presentation Mode</title>
+    <title>English Conversation Club — Enhanced Edition</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================
-           1. CORE STYLES & PASTEL PINK PALETTE
+           1. CORE STYLES & PASTEL PINK PALETTE (HIGH CONTRAST)
            ========================================== */
         :root {
-            --primary: #EC407A;
-            --primary-grad: linear-gradient(135deg, #F48FB1 0%, #EC407A 100%);
+            --primary: #D81B60;
+            --primary-grad: linear-gradient(135deg, #F06292 0%, #D81B60 100%);
             --bg-grad: linear-gradient(180deg, #FCE4EC 0%, #F8BBD0 100%);
             --card-bg: #FFFFFF;
-            --text-primary: #332228;
-            --text-secondary: #7A656C;
+            --text-primary: #1A0C11;
+            --text-secondary: #5A454D; /* Escurecido para melhor contraste */
+            --placeholder-color: #8E757E;
             --btn-bg: #FFF0F5;
             --btn-hover: #FCE4EC;
-            --success: #00C853;
-            --error: #FF3B30;
+            --success: #008736;
+            --error: #D32F2F;
+            --badge-challenge: #7B1FA2;
             --border-radius: 24px;
-            --border-color: #F8D7E3;
+            --border-color: #F48FB1;
             --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-size-base: 16px;
-            --shadow: 0px 10px 30px rgba(236, 64, 122, 0.12);
+            --shadow: 0px 10px 30px rgba(216, 27, 96, 0.15);
         }
 
         body.dark-mode {
             --bg-grad: linear-gradient(180deg, #2A1A20 0%, #1F1217 100%);
             --card-bg: #2B2025;
             --text-primary: #FDF0F5;
-            --text-secondary: #D2B8C3;
+            --text-secondary: #E0C0CE;
+            --placeholder-color: #A38593;
             --btn-bg: #3B2A31;
             --btn-hover: #4A363E;
-            --border-color: #4A363E;
+            --border-color: #6A4452;
             --shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
         }
 
@@ -61,15 +64,15 @@
 
         .app-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             position: relative;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 40px rgba(236, 64, 122, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 40px rgba(216, 27, 96, 0.15);
             transition: max-width 0.3s ease;
         }
 
@@ -84,7 +87,7 @@
             padding: 12px 16px;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
-            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.08);
+            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.1);
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -99,14 +102,14 @@
         .kwai-logo {
             background: var(--primary-grad);
             color: white;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 50px;
             font-weight: 800;
             font-size: 0.85rem;
             letter-spacing: 0.5px;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
 
         .tools-menu {
@@ -117,12 +120,12 @@
 
         .tool-btn {
             background: var(--btn-bg);
-            border: none;
+            border: 1px solid var(--border-color);
             border-radius: 50%;
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -136,14 +139,26 @@
 
         .global-timer {
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--primary);
             background: var(--btn-bg);
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 12px;
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 4px;
+        }
+
+        .chapter-counter-badge {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            background: var(--btn-bg);
+            padding: 6px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            text-align: center;
         }
 
         .slide-jump-select {
@@ -161,9 +176,10 @@
         .progress-container {
             width: 100%;
             background: var(--btn-bg);
-            height: 8px;
+            height: 10px;
             border-radius: 10px;
             overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
         .progress-bar {
@@ -175,7 +191,7 @@
         }
 
         /* ==========================================
-           3. DIDACTIC COMPONENTS
+           3. DIDACTIC COMPONENTS & BADGES
            ========================================== */
         main {
             flex: 1;
@@ -207,7 +223,7 @@
             box-shadow: var(--shadow);
             margin-bottom: 16px;
             position: relative;
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
         }
 
         .chapter-img {
@@ -217,10 +233,9 @@
             border-radius: 16px;
             margin: 12px 0 16px 0;
             border: 2px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
-        /* Classe específica para imagens exibidas inteiras sem cortes */
         .chapter-img-contain {
             width: 100%;
             max-height: 280px;
@@ -229,7 +244,7 @@
             border-radius: 16px;
             margin: 12px 0 16px 0;
             border: 2px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         .badge {
@@ -238,11 +253,21 @@
             font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 50px;
             display: inline-block;
             margin-bottom: 12px;
             letter-spacing: 0.5px;
+        }
+
+        .badge-challenge {
+            background: linear-gradient(135deg, #8E24AA 0%, #7B1FA2 100%);
+            color: white;
+        }
+
+        .badge-pronunciation {
+            background: linear-gradient(135deg, #00897B 0%, #00695C 100%);
+            color: white;
         }
 
         h1, h2, h3 {
@@ -252,14 +277,15 @@
             margin-bottom: 12px;
         }
 
-        h1 { font-size: 1.6rem; }
-        h2 { font-size: 1.3rem; }
+        h1 { font-size: 1.65rem; }
+        h2 { font-size: 1.35rem; }
         h3 { font-size: 1.1rem; }
 
         p, li {
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.55;
             font-size: 0.95rem;
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
@@ -274,11 +300,11 @@
             border-radius: 18px;
             border: 2px solid var(--border-color);
             object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         .pattern-box {
-            background: linear-gradient(135deg, rgba(236, 64, 122, 0.08) 0%, rgba(244, 143, 177, 0.15) 100%);
+            background: linear-gradient(135deg, rgba(216, 27, 96, 0.08) 0%, rgba(240, 98, 146, 0.15) 100%);
             border: 2px dashed var(--primary);
             border-radius: 16px;
             padding: 14px 16px;
@@ -299,8 +325,8 @@
 
         .pattern-formula {
             font-family: monospace;
-            font-weight: 700;
-            font-size: 1rem;
+            font-weight: 800;
+            font-size: 0.95rem;
             color: var(--text-primary);
             background: var(--card-bg);
             padding: 8px 12px;
@@ -308,6 +334,59 @@
             display: block;
             margin-top: 6px;
             border: 1px solid var(--border-color);
+        }
+
+        /* Dicas de Pronúncia (Melhoria 5) */
+        .pronunciation-box {
+            background: rgba(0, 137, 123, 0.08);
+            border: 2px solid #00897B;
+            border-radius: 16px;
+            padding: 14px;
+            margin: 14px 0;
+        }
+
+        .pronunciation-box header {
+            color: #00695C;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pronunciation-item {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .pronunciation-item span {
+            color: #00695C;
+            font-family: monospace;
+            font-weight: 800;
+        }
+
+        /* Desafio de Fala (Melhoria 3) */
+        .speaking-challenge-box {
+            background: rgba(123, 31, 162, 0.08);
+            border: 2px solid #7B1FA2;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .speaking-challenge-box header {
+            color: #7B1FA2;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .flashcard-grid {
@@ -343,7 +422,7 @@
             display: none;
             font-size: 0.82rem;
             color: var(--primary);
-            font-weight: 700;
+            font-weight: 800;
             margin-top: 4px;
         }
 
@@ -357,12 +436,12 @@
         }
 
         .speaker-box {
-            background: rgba(0, 200, 83, 0.08);
+            background: rgba(0, 135, 54, 0.08);
             border-left: 4px solid var(--success);
             padding: 12px 14px;
             border-radius: 0 12px 12px 0;
             margin: 12px 0;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
         }
 
         .speaker-box strong {
@@ -382,29 +461,30 @@
         .comp-item {
             padding: 10px;
             border-radius: 12px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .comp-item.wrong {
             background: #FFEBEB;
-            color: #CC2118;
-            border: 1px solid #FFC1C1;
+            color: #C62828;
+            border: 1px solid #EF9A9A;
         }
 
         .comp-item.right {
-            background: #E6F9EE;
-            color: #008537;
-            border: 1px solid #B3E8C7;
+            background: #E8F5E9;
+            color: #1B5E20;
+            border: 1px solid #A5D6A7;
         }
 
         .grammar-note {
             background: #FFF8E1;
-            border: 1px solid #FFE082;
+            border: 1.5px solid #FFE082;
             border-radius: 14px;
             padding: 12px 14px;
             margin: 12px 0;
             font-size: 0.88rem;
-            color: #5D4037;
+            color: #4E342E;
+            font-weight: 600;
         }
 
         .grammar-note strong {
@@ -420,7 +500,7 @@
         }
 
         /* ==========================================
-           4. CONTROLS & INTERACTIVE ELEMENTS
+           4. CONTROLS & INPUT ACCESSIBILITY
            ========================================== */
         .btn {
             width: 100%;
@@ -429,7 +509,7 @@
             border-radius: 16px;
             padding: 14px 18px;
             font-size: 0.95rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-primary);
             cursor: pointer;
             transition: all 0.2s ease;
@@ -451,7 +531,7 @@
             background: var(--primary-grad);
             color: white;
             border: none;
-            box-shadow: 0 6px 18px rgba(236, 64, 122, 0.3);
+            box-shadow: 0 6px 18px rgba(216, 27, 96, 0.25);
         }
 
         input[type="text"], textarea {
@@ -459,17 +539,24 @@
             padding: 12px 16px;
             border: 2px solid var(--border-color);
             border-radius: 14px;
-            background-color: var(--btn-bg);
+            background-color: var(--card-bg);
             color: var(--text-primary);
+            font-weight: 600;
             font-size: 0.95rem;
             margin-bottom: 12px;
             outline: none;
             transition: border-color 0.2s;
         }
 
+        ::placeholder {
+            color: var(--placeholder-color);
+            opacity: 1;
+            font-weight: 500;
+        }
+
         input[type="text"]:focus, textarea:focus {
             border-color: var(--primary);
-            background-color: var(--card-bg);
+            box-shadow: 0 0 0 3px rgba(216, 27, 96, 0.15);
         }
 
         .option-grid {
@@ -489,8 +576,8 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
+            font-weight: 700;
+            font-size: 0.88rem;
             transition: all 0.2s;
             color: var(--text-primary);
         }
@@ -510,10 +597,10 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             background: var(--card-bg);
             padding: 12px 16px;
-            box-shadow: 0 -4px 20px rgba(236, 64, 122, 0.1);
+            box-shadow: 0 -4px 20px rgba(216, 27, 96, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -588,6 +675,9 @@
                 <div class="kwai-logo">
                     <span>⚡</span> CONVERSATION CLUB
                 </div>
+                <div class="chapter-counter-badge" id="chapterBadgeDisplay">
+                    Slide 1 of 11
+                </div>
                 <div class="tools-menu">
                     <div class="global-timer" id="globalTimer">⏱️ 40:00</div>
                     <button class="tool-btn" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">🌙</button>
@@ -606,7 +696,8 @@
                 <option value="6">Slide 7: Chapter 6 — Fun Facts & Favorites</option>
                 <option value="7">Slide 8: Chapter 7 — Asking Questions</option>
                 <option value="8">Slide 9: Chapter 8 — Let's Talk!</option>
-                <option value="9">Slide 10: Chapter 9 — Thank You</option>
+                <option value="9">Slide 10: Final Challenge — Presentation</option>
+                <option value="10">Slide 11: Feedback & Summary</option>
             </select>
 
             <div class="progress-container">
@@ -639,7 +730,7 @@
                             </button>
                         </div>
                         <div class="welcome-image-container">
-                            <img src="welcome-banner.png" alt="Clube de Conversação em Inglês" class="welcome-img">
+                            <img src="welcome-banner.png" alt="English Conversation Club" class="welcome-img">
                         </div>
                     </div>
                 </div>
@@ -650,6 +741,10 @@
                 <div class="card">
                     <span class="badge">🌎 Chapter 1</span>
                     <h2>About Me</h2>
+
+                    <!-- Imagem para enriquecer visualmente (Melhoria 6) -->
+                    <img src="welcome-banner.png" alt="About Me Intro" class="chapter-img">
+
                     <p>Hello! My name is <strong>Sara Reis</strong>. I am <strong>24 years old</strong> and I live in Blumenau, Brazil.</p>
 
                     <div class="pattern-box">
@@ -669,7 +764,14 @@
                         Em inglês, a palavra <strong>Age</strong> se refere à <em>idade</em> (conceito), enquanto <strong>Years</strong> refere-se aos <em>anos</em> de vida decorridos. Para dizer a sua idade, usamos o verbo <strong>TO BE (I am)</strong>!
                     </div>
 
-                    <p style="margin-top: 16px; font-weight: 700;">Vocabulary Flashcards:</p>
+                    <!-- Dica de Pronúncia (Melhoria 5) -->
+                    <div class="pronunciation-box">
+                        <header>🗣️ Pronunciation Tip</header>
+                        <div class="pronunciation-item">• Years → <span>/jɪərz/</span> (som de 'y' suave, não de 'j')</div>
+                        <div class="pronunciation-item">• Live → <span>/lɪv/</span> (som curto de 'i', diferente de 'leave')</div>
+                    </div>
+
+                    <p style="margin-top: 16px; font-weight: 800;">Vocabulary Flashcards:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">🏠 Live</div>
@@ -688,11 +790,18 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>1. What is your name?</p>
-                    <input type="text" placeholder="e.g. My name is... / I am..." onchange="saveAnswer('userName', this.value)">
+                    <p>1. What is your full name and how do you like to be called?</p>
+                    <input type="text" placeholder="e.g. My name is... but you can call me..." onchange="saveAnswer('userName', this.value)">
 
-                    <p style="margin-top: 10px;">2. How old are you?</p>
-                    <input type="text" placeholder="e.g. I am 23 years old" onchange="saveAnswer('userAge', this.value)">
+                    <!-- Pergunta "Why?" (Melhoria 4) -->
+                    <p style="margin-top: 10px;">2. How old are you, and what is something great about being your age?</p>
+                    <input type="text" placeholder="e.g. I am 24 years old because..." onchange="saveAnswer('userAgeDetails', this.value)">
+
+                    <!-- Mini Desafio de Fala (Melhoria 3) -->
+                    <div class="speaking-challenge-box">
+                        <header>🏆 Mini Challenge — Speak Up!</header>
+                        <p style="color: var(--text-primary);">Introduce yourself to your partner in 3 complete sentences without stopping!</p>
+                    </div>
                 </div>
             </section>
 
@@ -702,15 +811,14 @@
                     <span class="badge">🏡 Chapter 2</span>
                     <h2>My City — Blumenau</h2>
                     
-                    <!-- FOTO BLUMENAU: Ajustado para B maiúsculo como está no GitHub -->
                     <img src="Blumenau.jpg" alt="Blumenau" class="chapter-img">
 
                     <p>I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest, German architecture, beautiful nature, and high quality of life.</p>
 
                     <div class="grammar-note" style="margin: 16px 0;">
                         <strong>💡 Qual a diferença entre "I'm from" e "I live in"?</strong><br>
-                        • <strong>I'm from... (Eu sou de...):</strong> Refere-se ao seu local de origem ou onde você nasceu/cresceu. Ex: <em>"I'm from Rio de Janeiro."</em><br>
-                        • <strong>I live in... (Eu moro em...):</strong> Refere-se ao seu local de residência atual. Ex: <em>"I live in Blumenau."</em>
+                        • <strong>I'm from... (Eu sou de...):</strong> Refere-se ao seu local de origem ou onde você nasceu/cresceu.<br>
+                        • <strong>I live in... (Eu moro em...):</strong> Refere-se ao seu local de residência atual.
                     </div>
 
                     <div class="pattern-box">
@@ -719,7 +827,14 @@
                         <div class="pattern-formula">[City] is [Adjective 1] and [Adjective 2].</div>
                     </div>
 
-                    <p style="margin-top: 16px; font-weight: 700;">City Vocabulary Flashcards:</p>
+                    <!-- Dica de Pronúncia -->
+                    <div class="pronunciation-box">
+                        <header>🗣️ Pronunciation Tip</header>
+                        <div class="pronunciation-item">• City → <span>/ˈsɪti/</span> ou <span>/ˈsɪdi/</span></div>
+                        <div class="pronunciation-item">• Architecture → <span>/ˈɑːrkɪtektʃər/</span> (som de 'k')</div>
+                    </div>
+
+                    <p style="margin-top: 16px; font-weight: 800;">City Vocabulary Flashcards:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">🍻 Heritage / Culture</div>
@@ -742,122 +857,115 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>1. Where are you from? / Where do you live?</p>
-                    <input type="text" placeholder="e.g. I am from... / I live in..." onchange="saveAnswer('userOriginAndCity', this.value)">
+                    <p>1. Where are you from originally, and where do you live now?</p>
+                    <input type="text" placeholder="e.g. I am originally from... but now I live in..." onchange="saveAnswer('userOriginAndCity', this.value)">
 
-                    <p style="margin-top: 10px;">2. Describe your city using two adjectives:</p>
-                    <input type="text" placeholder="e.g. Beautiful and vibrant" onchange="saveAnswer('cityAdjectives', this.value)">
+                    <!-- Pergunta "Why?" (Melhoria 4) -->
+                    <p style="margin-top: 10px;">2. Do you like living in your city? Why or why not?</p>
+                    <input type="text" placeholder="e.g. I love my city because it is peaceful and green..." onchange="saveAnswer('cityOpinionWhy', this.value)">
+
+                    <!-- Desafio de Fala (Melhoria 3) -->
+                    <div class="speaking-challenge-box">
+                        <header>🏆 Mini Challenge — Speak Up!</header>
+                        <p style="color: var(--text-primary);">Describe your favorite spot in your city to your partner using at least 2 adjectives!</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- SLIDE 4: CHAPTER 3 — MY FAMILY -->
+            <!-- SLIDE 4: CHAPTER 3 — MY FAMILY (DIVIDIDO - MELHORIA 8) -->
             <section class="chapter" id="chap-3">
                 <div class="card">
                     <span class="badge">👨‍👩‍👧 Chapter 3</span>
                     <h2>My Family</h2>
 
-                    <!-- FOTO FAMILIA: F maiúsculo + classe contain para não cortar -->
                     <img src="Familia.jpg" alt="My Family" class="chapter-img-contain">
 
-                    <p style="font-weight: 700;">Family Vocabulary Flashcards:</p>
-                    <div class="flashcard-grid">
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👨‍👩‍👦 Parents</div>
-                            <div class="back">Pais (Mãe e Pai)</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👥 Relatives</div>
-                            <div class="back">Parentes</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👦 Siblings</div>
-                            <div class="back">Irmãos/Irmãs</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">💍 Spouse</div>
-                            <div class="back">Cônjuge</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👦 Brother</div>
-                            <div class="back">Irmão</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👧 Sister</div>
-                            <div class="back">Irmã</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👨 Husband</div>
-                            <div class="back">Marido</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👩 Wife</div>
-                            <div class="back">Esposa</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👧 Daughter</div>
-                            <div class="back">Filha</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👦 Son</div>
-                            <div class="back">Filho</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👶 Child / Children</div>
-                            <div class="back">Criança / Crianças</div>
+                    <div class="pronunciation-box">
+                        <header>🗣️ Pronunciation Tip</header>
+                        <div class="pronunciation-item">• Relatives → <span>/ˈrelətɪvz/</span> (não confunda com 'parentes')</div>
+                        <div class="pronunciation-item">• Parents → <span>/ˈpeərənts/</span> (significa Pai e Mãe)</div>
+                    </div>
+
+                    <!-- SUBSEÇÃO 1: FAMILY MEMBERS -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">👨‍👩‍👧‍👦 1. Family Members</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👨‍👩‍👦 Parents</div>
+                                <div class="back">Pais (Mãe e Pai)</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👥 Relatives</div>
+                                <div class="back">Parentes</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👦 Siblings</div>
+                                <div class="back">Irmãos/Irmãs</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👧 Daughter / Son</div>
+                                <div class="back">Filha / Filho</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- SEÇÃO ESPECIAL - ENGAGED -->
+                    <!-- SUBSEÇÃO 2: RELATIONSHIP STATUS -->
                     <div class="section-box">
-                        <h3 style="color: var(--primary);">💍 Getting Married (Engaged)</h3>
+                        <h3 style="color: var(--primary);">💖 2. Relationship Status</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👤 Single</div>
+                                <div class="back">Solteiro(a)</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💖 In a Relationship</div>
+                                <div class="back">Em um relacionamento</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💍 Engaged</div>
+                                <div class="back">Noivo(a)</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💒 Married</div>
+                                <div class="back">Casado(a)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUBSEÇÃO 3: MARRIAGE VOCABULARY -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">💍 3. Marriage Vocabulary</h3>
                         <div class="flashcard-grid">
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">💍 Fiancé / Fiancée</div>
-                                <div class="back">Noivo / Noiva (Noivado)</div>
+                                <div class="back">Noivo / Noiva</div>
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">👰 Bride</div>
-                                <div class="back">Noiva (no casamento)</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🤵 Groom</div>
-                                <div class="back">Noivo (no casamento)</div>
+                                <div class="front">👰 Bride / Groom</div>
+                                <div class="back">Noiva / Noivo (no dia)</div>
                             </div>
                         </div>
                     </div>
 
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
-                    <h3>👉 Relationship Status</h3>
-                    <p style="font-size: 0.85rem; margin-bottom: 8px;">Clique nos cards para ver a tradução:</p>
-                    <div class="flashcard-grid">
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">👤 Single</div>
-                            <div class="back">Solteiro(a)</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">💖 In a Relationship</div>
-                            <div class="back">Em um relacionamento</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">💍 Engaged</div>
-                            <div class="back">Noivo(a)</div>
-                        </div>
-                        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                            <div class="front">💒 Married</div>
-                            <div class="back">Casado(a)</div>
-                        </div>
+                    <h3>👉 YOUR TURN</h3>
+                    <p>1. Tell us about your family structure and status:</p>
+                    <input type="text" placeholder="e.g. I am engaged / I have two brothers..." onchange="saveAnswer('userFamilyDetails', this.value)">
+
+                    <div class="speaking-challenge-box">
+                        <header>🏆 Speaking Challenge — Free Practice</header>
+                        <p style="color: var(--text-primary);">Tell your partner about your family! Try to use at least <strong>3 vocabulary words</strong> from the cards above.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 5: CHAPTER 4 — WORK & EDUCATION -->
+            <!-- SLIDE 5: CHAPTER 4 — WORK & EDUCATION (REORGANIZADO - MELHORIA 7) -->
             <section class="chapter" id="chap-4">
                 <div class="card">
                     <span class="badge">💼 Chapter 4</span>
                     <h2>Work & Education</h2>
 
-                    <!-- FOTO TRABALHO: classe contain para não cortar -->
                     <img src="trabalho.jpg" alt="Work & Education" class="chapter-img-contain">
 
                     <p>Focusing on daily routines, procurement/purchasing, administration, and studies.</p>
@@ -865,39 +973,18 @@
                     <div class="pattern-box">
                         <header>💡 Formula Patterns</header>
                         <div>"I am responsible for <strong>[Verb + ING]</strong>..."</div>
-                        <div class="pattern-formula">I work / study at [Company / University].</div>
+                        <div class="pattern-formula">I work as a / an [Job Title].</div>
                     </div>
 
-                    <!-- CATEGORIA EDUCATION -->
-                    <div class="section-box">
-                        <h3 style="color: var(--primary);">🎓 Education (Estudos / Educação)</h3>
-                        <div class="flashcard-grid">
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🎓 Bachelor's Degree</div>
-                                <div class="back">Bacharelado / Graduação</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🎒 Student</div>
-                                <div class="back">Estudante / Aluno</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">📅 Semester</div>
-                                <div class="back">Semestre</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🏛️ University</div>
-                                <div class="back">Universidade</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">📚 Major / Course</div>
-                                <div class="back">Curso / Especialização</div>
-                            </div>
-                        </div>
+                    <div class="pronunciation-box">
+                        <header>🗣️ Pronunciation Tip</header>
+                        <div class="pronunciation-item">• Purchase → <span>/ˈpɜːrtʃəs/</span> (não diga 'purcha-se')</div>
+                        <div class="pronunciation-item">• Major → <span>/ˈmeɪdʒər/</span></div>
                     </div>
 
-                    <!-- CATEGORIA WORK -->
+                    <!-- SUBSEÇÃO 1: JOB TITLES -->
                     <div class="section-box">
-                        <h3 style="color: var(--primary);">💼 Work (Trabalho / Profissional)</h3>
+                        <h3 style="color: var(--primary);">👔 1. Job Titles (Cargos e Funções)</h3>
                         <div class="flashcard-grid">
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">👔 Assistant</div>
@@ -909,50 +996,74 @@
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">🛒 Buyer</div>
-                                <div class="back">Comprador</div>
+                                <div class="back">Comprador(a)</div>
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🤝 Supplier</div>
-                                <div class="back">Fornecedor</div>
+                                <div class="front">🎒 Student</div>
+                                <div class="back">Estudante</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUBSEÇÃO 2: TOOLS & DOCUMENTS -->
+                    <div class="section-box">
+                        <h3 style="color: var(--primary);">📄 2. Work Tools & Documents</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">📈 Spreadsheets</div>
+                                <div class="back">Planilhas</div>
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">📄 Purchase Order</div>
                                 <div class="back">Pedido de Compra</div>
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">📈 Spreadsheets</div>
-                                <div class="back">Planilhas</div>
+                                <div class="front">🤝 Supplier</div>
+                                <div class="back">Fornecedor</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎓 Bachelor's Degree</div>
+                                <div class="back">Bacharelado</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="grammar-note" style="margin: 16px 0;">
-                        <strong>💡 Purchasing vs. Procurement:</strong><br>
-                        • <strong>Purchasing (Compras):</strong> Focado no ato transacional de comprar bens/serviços (pedidos, pagamento, recebimento).<br>
-                        • <strong>Procurement (Aquisições / Aprovisionamento):</strong> Um processo mais estratégico que inclui pesquisa de fornecedores, negociação de contratos e gestão de riscos.
                     </div>
 
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>What do you do professionally or what are you studying?</p>
-                    <input type="text" placeholder="e.g. I study IT / I work in administration" onchange="saveAnswer('userJobDetails', this.value)">
+                    <p>1. What do you do professionally or study, and why did you choose this field?</p>
+                    <input type="text" placeholder="e.g. I work as an analyst because I enjoy numbers..." onchange="saveAnswer('userJobDetailsWhy', this.value)">
+
+                    <div class="speaking-challenge-box">
+                        <header>🏆 Speaking Challenge — Free Practice</header>
+                        <p style="color: var(--text-primary);">Explain your main daily responsibility at work/school in 30 seconds!</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- SLIDE 6: CHAPTER 5 — HOBBIES & FREE TIME -->
+            <!-- SLIDE 6: CHAPTER 5 — HOBBIES & FREE TIME (ENRIQUECIDO - MELHORIA 9) -->
             <section class="chapter" id="chap-5">
                 <div class="card">
                     <span class="badge">🎨 Chapter 5</span>
                     <h2>Hobbies & Free Time</h2>
 
-                    <!-- FOTO SCOOBY: S maiúsculo ajustado conforme GitHub -->
                     <img src="Scooby.png" alt="Hobbies" class="chapter-img">
 
                     <div class="pattern-box">
-                        <header>💡 Useful Pattern (Hobbies)</header>
+                        <header>💡 Useful Pattern (Hobbies Grammar)</header>
                         <div>"In my free time, I really enjoy <strong>[Verb + ING]</strong>."</div>
-                        <div class="pattern-formula">I am passionate about [Hobby].</div>
+                        <div class="pattern-formula">I am passionate about [Hobby / Activity].</div>
+                    </div>
+
+                    <div class="grammar-note">
+                        <strong>📌 Dica Gramatical Importante:</strong><br>
+                        Após o verbo <strong>enjoy</strong> ou preposições como <strong>about</strong>, sempre usamos o verbo seguinte com <strong>-ING</strong>! Ex: <em>"I enjoy read<strong>ing</strong>"</em>, <em>"I am interested in paint<strong>ing</strong>"</em>.
+                    </div>
+
+                    <div class="pronunciation-box">
+                        <header>🗣️ Pronunciation Tip</header>
+                        <div class="pronunciation-item">• Favorite → <span>/ˈfeɪvərɪt/</span> (são 3 sílabas, não fale 'favorit-e')</div>
+                        <div class="pronunciation-item">• Photography → <span>/fəˈtɑːɡrəfi/</span> (ênfase na 2ª sílaba)</div>
                     </div>
 
                     <h3>👉 Select Your Favorite Hobbies</h3>
@@ -966,6 +1077,17 @@
                         <div class="check-card" onclick="toggleOption(this, 'Photography')">📷 Photography</div>
                         <div class="check-card" onclick="toggleOption(this, 'Crafting/Art')">🎨 Crafting / Art</div>
                     </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
+
+                    <h3>👉 YOUR TURN</h3>
+                    <p>What is your favorite hobby and why do you like doing it?</p>
+                    <input type="text" placeholder="e.g. I really enjoy reading because it helps me relax..." onchange="saveAnswer('userHobbyWhy', this.value)">
+
+                    <div class="speaking-challenge-box">
+                        <header>🏆 Speaking Challenge — Free Practice</header>
+                        <p style="color: var(--text-primary);">Speak for <strong>30 seconds</strong> about how often you practice your hobby!</p>
+                    </div>
                 </div>
             </section>
 
@@ -975,10 +1097,15 @@
                     <span class="badge">⭐ Chapter 6</span>
                     <h2>Fun Facts & Favorites</h2>
 
-                    <!-- FOTO SALSICHA: minúsculo mantido exatamente como no GitHub -->
                     <img src="salsicha.png" alt="Fun Facts" class="chapter-img">
 
-                    <p style="font-weight: 700;">Click to reveal cards:</p>
+                    <div class="pronunciation-box">
+                        <header>🗣️ Pronunciation Tip</header>
+                        <div class="pronunciation-item">• Favorite → <span>/ˈfeɪvərɪt/</span></div>
+                        <div class="pronunciation-item">• Genre → <span>/ˈʒɑːnrə/</span></div>
+                    </div>
+
+                    <p style="font-weight: 800;">Click to reveal cards:</p>
                     <div class="flashcard-grid">
                         <div class="flashcard" onclick="this.classList.toggle('flipped')">
                             <div class="front">🎬 Favorite Movie</div>
@@ -994,9 +1121,9 @@
                         </div>
                     </div>
 
-                    <!-- SEÇÃO: ESTAÇÕES DO ANO -->
+                    <!-- ESTAÇÕES DO ANO -->
                     <div class="section-box">
-                        <h3 style="color: var(--primary);">🍂 Seasons of the Year (Estações do Ano)</h3>
+                        <h3 style="color: var(--primary);">🍂 Seasons of the Year</h3>
                         <div class="flashcard-grid">
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">🌸 Spring</div>
@@ -1017,95 +1144,14 @@
                         </div>
                     </div>
 
-                    <!-- SEÇÃO: ESTILOS DE FILME -->
-                    <div class="section-box">
-                        <h3 style="color: var(--primary);">🎬 Movie Genres (Estilos de Filme)</h3>
-                        <div class="flashcard-grid">
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">😂 Comedy</div>
-                                <div class="back">Comédia</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🎨 Animation</div>
-                                <div class="back">Animação</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">👻 Horror / Terror</div>
-                                <div class="back">Terror / Horror</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">💥 Action</div>
-                                <div class="back">Ação</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">💖 Romance</div>
-                                <div class="back">Romance</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🚀 Sci-Fi</div>
-                                <div class="back">Ficção Científica</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SEÇÃO: COMIDAS E BEBIDAS -->
-                    <div class="section-box">
-                        <h3 style="color: var(--primary);">🍕 Favorite Foods & Drinks (Comidas e Bebidas)</h3>
-                        <div class="flashcard-grid">
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🍕 Pizza</div>
-                                <div class="back">Pizza</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🍝 Spaghetti</div>
-                                <div class="back">Espaguete</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🍔 Burger</div>
-                                <div class="back">Hambúrguer</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🍣 Sushi</div>
-                                <div class="back">Sushi</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🦐 Seafood</div>
-                                <div class="back">Frutos do Mar</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🍦 Ice Cream</div>
-                                <div class="back">Sorvete</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🍫 Chocolate</div>
-                                <div class="back">Chocolate</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">☕ Coffee</div>
-                                <div class="back">Café</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">🍵 Tea</div>
-                                <div class="back">Chá</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">⚡ Energy Drink</div>
-                                <div class="back">Energético</div>
-                            </div>
-                        </div>
-                    </div>
-
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
-                    <h3>👉 YOUR TURN</h3>
-                    <p>1. What is your favorite season?</p>
-                    <input type="text" placeholder="e.g. My favorite season is Autumn..." onchange="saveAnswer('favSeason', this.value)">
+                    <h3>👉 YOUR TURN (with "Why?")</h3>
+                    <p>1. What is your favorite movie AND why do you love it?</p>
+                    <input type="text" placeholder="e.g. My favorite movie is... because..." onchange="saveAnswer('favMovieWhy', this.value)">
 
-                    <p style="margin-top: 10px;">2. What is your favorite movie?</p>
-                    <input type="text" placeholder="e.g. My favorite movie is..." onchange="saveAnswer('favMovie', this.value)">
-
-                    <p style="margin-top: 10px;">3. What is your favorite movie genre?</p>
-                    <input type="text" placeholder="e.g. I love Comedy and Romance..." onchange="saveAnswer('favGenre', this.value)">
+                    <p style="margin-top: 10px;">2. Which season of the year do you prefer and why?</p>
+                    <input type="text" placeholder="e.g. I prefer Autumn because the weather is comfortable..." onchange="saveAnswer('favSeasonWhy', this.value)">
                 </div>
             </section>
 
@@ -1114,14 +1160,18 @@
                 <div class="card">
                     <span class="badge">❓ Chapter 7</span>
                     <h2>Asking Questions in English</h2>
+
+                    <!-- Imagem para enriquecer visualmente (Melhoria 6) -->
+                    <img src="welcome-banner.png" alt="Asking Questions" class="chapter-img">
+
                     <p>Para manter uma conversa fluindo, fazer perguntas é essencial! Aqui estão as principais formas de perguntar:</p>
 
                     <div class="pattern-box">
                         <header>💡 Essential Question Formulas</header>
                         <p style="margin-bottom: 6px;">• <strong>What is your name?</strong> (Qual é o seu nome?)</p>
                         <p style="margin-bottom: 6px;">• <strong>How old are you?</strong> (Quantos anos você tem?)</p>
-                        <p style="margin-bottom: 6px;">• <strong>What do you do?</strong> (O que você faz? / Qual sua profissão?)</p>
-                        <p style="margin-bottom: 0;">• <strong>What do you like?</strong> (Do que você gosta?)</p>
+                        <p style="margin-bottom: 6px;">• <strong>Why do you study English?</strong> (Por que você estuda inglês?)</p>
+                        <p style="margin-bottom: 0;">• <strong>What do you like to do?</strong> (O que você gosta de fazer?)</p>
                     </div>
 
                     <!-- GREETINGS -->
@@ -1131,13 +1181,6 @@
                             Essas são as formas mais comuns de perguntar <em>"Como você está?"</em> no dia a dia.
                         </p>
                         
-                        <p style="font-weight: 700; color: var(--primary); font-size: 0.9rem;">Perguntas:</p>
-                        <ul style="margin-left: 20px; font-size: 0.88rem;">
-                            <li><strong>How are you?</strong> → Como você está? (Mais padrão/formal)</li>
-                            <li><strong>How are you doing? / How you doing?</strong> → Como você tá indo? / Como vão as coisas? (Muito comum e informal)</li>
-                        </ul>
-
-                        <p style="font-weight: 700; color: var(--primary); font-size: 0.9rem; margin-top: 10px;">Respostas Comuns (Answers):</p>
                         <div class="flashcard-grid" style="margin-top: 8px;">
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">😊 I'm doing good!</div>
@@ -1147,24 +1190,6 @@
                                 <div class="front">👍 I'm great, thanks!</div>
                                 <div class="back">Estou ótimo(a), obrigado(a)!</div>
                             </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">👌 Not bad!</div>
-                                <div class="back">Nada mal / Tudo tranquilo!</div>
-                            </div>
-                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">😴 A bit tired!</div>
-                                <div class="back">Um pouco cansado(a)!</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DICA DE CONVERSAÇÃO -->
-                    <div class="section-box">
-                        <h3 style="color: var(--primary);">🗣️ Quick Follow-up Questions</h3>
-                        <p style="font-size: 0.9rem;">
-                            Quando alguém te fizer uma pergunta e você quiser devolver a mesma pergunta de forma rápida e natural, use:
-                        </p>
-                        <div class="flashcard-grid" style="margin-top: 10px;">
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">💬 And you?</div>
                                 <div class="back">E você?</div>
@@ -1179,8 +1204,8 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 PRACTICE</h3>
-                    <p>Escreva uma pergunta em inglês que você gostaria de fazer para a sua dupla:</p>
-                    <input type="text" placeholder="e.g. What do you like to do on weekends?" onchange="saveAnswer('userPracticeQuestion', this.value)">
+                    <p>Create an open-ended question starting with "Why..." to ask your partner:</p>
+                    <input type="text" placeholder="e.g. Why do you like learning English?" onchange="saveAnswer('userWhyQuestion', this.value)">
                 </div>
             </section>
 
@@ -1202,17 +1227,42 @@
                     </button>
 
                     <div style="margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 10px;">
-                        <span style="font-weight: 700;">Challenge Timer:</span>
+                        <span style="font-weight: 800;">Challenge Timer:</span>
                         <div class="global-timer" id="talkTimer">⏳ 02:00</div>
                         <button class="btn" style="width: auto; padding: 6px 12px; margin: 0;" onclick="startTalkTimer()">Start</button>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 10: CHAPTER 9 — THANK YOU & SUMMARY -->
+            <!-- SLIDE 10: FINAL CHALLENGE — PRESENTATION (MELHORIA 11) -->
             <section class="chapter" id="chap-9">
+                <div class="card">
+                    <span class="badge badge-challenge">🎯 Slide 10 — Final Challenge</span>
+                    <h2>Full Speech Presentation</h2>
+                    <p style="margin-bottom: 15px;">Agora é o momento de consolidar tudo o que você aprendeu! Apresente-se para a sua dupla cobrindo todos os pontos abaixo sem parar:</p>
+
+                    <div class="section-box" style="background: var(--card-bg); border-color: var(--primary);">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;">✅ <strong>Name & Age:</strong> My name is... and I am... years old.</li>
+                            <li style="margin-bottom: 8px;">✅ <strong>City:</strong> I live in... which is famous for...</li>
+                            <li style="margin-bottom: 8px;">✅ <strong>Family:</strong> Tell a quick fact about your family or relationship status.</li>
+                            <li style="margin-bottom: 8px;">✅ <strong>Work / Education:</strong> What you do and why you like it.</li>
+                            <li style="margin-bottom: 8px;">✅ <strong>Hobbies:</strong> What you enjoy doing in your free time.</li>
+                            <li style="margin-bottom: 0;">✅ <strong>Favorite Movie/Thing:</strong> Your favorite movie/season and why!</li>
+                        </ul>
+                    </div>
+
+                    <div class="speaking-challenge-box" style="text-align: center;">
+                        <header style="justify-content: center;">⏱️ Speak for 1 Full Minute!</header>
+                        <p style="color: var(--text-primary);">Desafie-se a falar de forma contínua por 1 minuto completo com base nas suas anotações!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 11: CHAPTER 9 — THANK YOU & FEEDBACK -->
+            <section class="chapter" id="chap-10">
                 <div class="card" style="text-align: center;">
-                    <span class="badge">🎉 Chapter 9</span>
+                    <span class="badge">🎉 Slide 11</span>
                     <h2>Thank You & Summary</h2>
                     <p style="font-size: 1.05rem; margin-top: 10px;">
                         Great job completing today's English Conversation Club session!
@@ -1227,12 +1277,12 @@
 
                         <form action="https://formspree.io/f/xykrjveg" method="POST" id="feedbackForm" onsubmit="handleFeedbackSubmit(event)">
                             
-                            <p style="font-size: 0.9rem; font-weight: 700; margin-top: 10px;">
+                            <p style="font-size: 0.9rem; font-weight: 800; margin-top: 10px;">
                                 1. O que você achou da sessão?
                             </p>
                             <textarea name="oque_achou_da_sessao" rows="3" placeholder="Sua opinião sincera sobre a apresentação..." required></textarea>
 
-                            <p style="font-size: 0.9rem; font-weight: 700; margin-top: 10px;">
+                            <p style="font-size: 0.9rem; font-weight: 800; margin-top: 10px;">
                                 2. O que você acha que poderia melhorar?
                             </p>
                             <textarea name="oque_pode_melhorar" rows="3" placeholder="Sugestões de melhoria..." required></textarea>
@@ -1242,7 +1292,7 @@
                             </button>
                         </form>
 
-                        <div id="feedbackSuccess" style="display: none; background: #E6F9EE; border: 1px solid #B3E8C7; color: #008537; padding: 12px; border-radius: 12px; text-align: center; margin-top: 12px; font-weight: 700;">
+                        <div id="feedbackSuccess" style="display: none; background: #E8F5E9; border: 1px solid #A5D6A7; color: #1B5E20; padding: 12px; border-radius: 12px; text-align: center; margin-top: 12px; font-weight: 800;">
                             ✅ Obrigado pelo feedback! Suas respostas foram enviadas anonimamente.
                         </div>
                     </div>
@@ -1271,7 +1321,7 @@
        ========================================== -->
     <script>
         let currentChapter = 0;
-        const totalChapters = 10;
+        const totalChapters = 11;
         let userData = {};
 
         try {
@@ -1285,14 +1335,13 @@
         let talkInterval = null;
 
         const talkQuestions = [
-            "Where are you from?",
-            "What do you do for work or study?",
-            "Do you like traveling? What's your dream vacation?",
-            "What languages do you speak or want to learn?",
-            "What is your dream job?",
-            "What is your favorite movie of all time?",
-            "Do you enjoy reading? What book do you recommend?",
-            "What do you usually do on weekends?"
+            "Where are you from originally and why do you like/dislike living there?",
+            "What do you do for work or study, and what is the best part of it?",
+            "Do you like traveling? What's your dream vacation and why?",
+            "Why is learning English important for your personal or professional goals?",
+            "What is your favorite movie of all time and why?",
+            "Do you enjoy reading? What book do you recommend and why?",
+            "What do you usually do on weekends to relax?"
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1313,6 +1362,9 @@
             const progressPct = (currentChapter / (totalChapters - 1)) * 100;
             document.getElementById('progressBar').style.width = progressPct + '%';
             document.getElementById('slideJumpSelect').value = currentChapter;
+            
+            // Atualiza o contador visual "Slide X de Y" (Melhoria 2)
+            document.getElementById('chapterBadgeDisplay').textContent = `Slide ${currentChapter + 1} of ${totalChapters}`;
 
             document.getElementById('prevBtn').disabled = (currentChapter === 0);
             document.getElementById('nextBtn').style.display = (currentChapter === totalChapters - 1) ? 'none' : 'inline-flex';
@@ -1430,3 +1482,4 @@
     </script>
 </body>
 </html>
+
