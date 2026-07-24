@@ -19,7 +19,7 @@
             --bg-grad: linear-gradient(180deg, #FCE4EC 0%, #F8BBD0 100%);
             --card-bg: #FFFFFF;
             --text-primary: #1A0C11;
-            --text-secondary: #5A454D; /* Escurecido para melhor contraste */
+            --text-secondary: #5A454D;
             --placeholder-color: #8E757E;
             --btn-bg: #FFF0F5;
             --btn-hover: #FCE4EC;
@@ -336,7 +336,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Dicas de Pronúncia (Melhoria 5) */
         .pronunciation-box {
             background: rgba(0, 137, 123, 0.08);
             border: 2px solid #00897B;
@@ -369,7 +368,6 @@
             font-weight: 800;
         }
 
-        /* Desafio de Fala (Melhoria 3) */
         .speaking-challenge-box {
             background: rgba(123, 31, 162, 0.08);
             border: 2px solid #7B1FA2;
@@ -742,7 +740,6 @@
                     <span class="badge">🌎 Chapter 1</span>
                     <h2>About Me</h2>
 
-                    <!-- Imagem para enriquecer visualmente (Melhoria 6) -->
                     <img src="welcome-banner.png" alt="About Me Intro" class="chapter-img">
 
                     <p>Hello! My name is <strong>Sara Reis</strong>. I am <strong>24 years old</strong> and I live in Blumenau, Brazil.</p>
@@ -764,7 +761,6 @@
                         Em inglês, a palavra <strong>Age</strong> se refere à <em>idade</em> (conceito), enquanto <strong>Years</strong> refere-se aos <em>anos</em> de vida decorridos. Para dizer a sua idade, usamos o verbo <strong>TO BE (I am)</strong>!
                     </div>
 
-                    <!-- Dica de Pronúncia (Melhoria 5) -->
                     <div class="pronunciation-box">
                         <header>🗣️ Pronunciation Tip</header>
                         <div class="pronunciation-item">• Years → <span>/jɪərz/</span> (som de 'y' suave, não de 'j')</div>
@@ -793,11 +789,9 @@
                     <p>1. What is your full name and how do you like to be called?</p>
                     <input type="text" placeholder="e.g. My name is... but you can call me..." onchange="saveAnswer('userName', this.value)">
 
-                    <!-- Pergunta "Why?" (Melhoria 4) -->
                     <p style="margin-top: 10px;">2. How old are you, and what is something great about being your age?</p>
                     <input type="text" placeholder="e.g. I am 24 years old because..." onchange="saveAnswer('userAgeDetails', this.value)">
 
-                    <!-- Mini Desafio de Fala (Melhoria 3) -->
                     <div class="speaking-challenge-box">
                         <header>🏆 Mini Challenge — Speak Up!</header>
                         <p style="color: var(--text-primary);">Introduce yourself to your partner in 3 complete sentences without stopping!</p>
@@ -827,7 +821,6 @@
                         <div class="pattern-formula">[City] is [Adjective 1] and [Adjective 2].</div>
                     </div>
 
-                    <!-- Dica de Pronúncia -->
                     <div class="pronunciation-box">
                         <header>🗣️ Pronunciation Tip</header>
                         <div class="pronunciation-item">• City → <span>/ˈsɪti/</span> ou <span>/ˈsɪdi/</span></div>
@@ -860,11 +853,9 @@
                     <p>1. Where are you from originally, and where do you live now?</p>
                     <input type="text" placeholder="e.g. I am originally from... but now I live in..." onchange="saveAnswer('userOriginAndCity', this.value)">
 
-                    <!-- Pergunta "Why?" (Melhoria 4) -->
                     <p style="margin-top: 10px;">2. Do you like living in your city? Why or why not?</p>
                     <input type="text" placeholder="e.g. I love my city because it is peaceful and green..." onchange="saveAnswer('cityOpinionWhy', this.value)">
 
-                    <!-- Desafio de Fala (Melhoria 3) -->
                     <div class="speaking-challenge-box">
                         <header>🏆 Mini Challenge — Speak Up!</header>
                         <p style="color: var(--text-primary);">Describe your favorite spot in your city to your partner using at least 2 adjectives!</p>
@@ -872,7 +863,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 4: CHAPTER 3 — MY FAMILY (DIVIDIDO - MELHORIA 8) -->
+            <!-- SLIDE 4: CHAPTER 3 — MY FAMILY -->
             <section class="chapter" id="chap-3">
                 <div class="card">
                     <span class="badge">👨‍👩‍👧 Chapter 3</span>
@@ -960,7 +951,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 5: CHAPTER 4 — WORK & EDUCATION (REORGANIZADO - MELHORIA 7) -->
+            <!-- SLIDE 5: CHAPTER 4 — WORK & EDUCATION -->
             <section class="chapter" id="chap-4">
                 <div class="card">
                     <span class="badge">💼 Chapter 4</span>
@@ -1041,7 +1032,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 6: CHAPTER 5 — HOBBIES & FREE TIME (ENRIQUECIDO - MELHORIA 9) -->
+            <!-- SLIDE 6: CHAPTER 5 — HOBBIES & FREE TIME -->
             <section class="chapter" id="chap-5">
                 <div class="card">
                     <span class="badge">🎨 Chapter 5</span>
@@ -1161,7 +1152,6 @@
                     <span class="badge">❓ Chapter 7</span>
                     <h2>Asking Questions in English</h2>
 
-                    <!-- Imagem para enriquecer visualmente (Melhoria 6) -->
                     <img src="welcome-banner.png" alt="Asking Questions" class="chapter-img">
 
                     <p>Para manter uma conversa fluindo, fazer perguntas é essencial! Aqui estão as principais formas de perguntar:</p>
@@ -1234,7 +1224,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 10: FINAL CHALLENGE — PRESENTATION (MELHORIA 11) -->
+            <!-- SLIDE 10: FINAL CHALLENGE — PRESENTATION -->
             <section class="chapter" id="chap-9">
                 <div class="card">
                     <span class="badge badge-challenge">🎯 Slide 10 — Final Challenge</span>
@@ -1363,7 +1353,6 @@
             document.getElementById('progressBar').style.width = progressPct + '%';
             document.getElementById('slideJumpSelect').value = currentChapter;
             
-            // Atualiza o contador visual "Slide X de Y" (Melhoria 2)
             document.getElementById('chapterBadgeDisplay').textContent = `Slide ${currentChapter + 1} of ${totalChapters}`;
 
             document.getElementById('prevBtn').disabled = (currentChapter === 0);
@@ -1482,4 +1471,3 @@
     </script>
 </body>
 </html>
-
