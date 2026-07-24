@@ -11,7 +11,7 @@
     
     <style>
         /* ==========================================
-           1. CORE STYLES & PASTEL PINK PALETTE (HIGH CONTRAST)
+           1. CORE STYLES & PASTEL PINK PALETTE
            ========================================== */
         :root {
             --primary: #D81B60;
@@ -226,16 +226,6 @@
             border: 1.5px solid var(--border-color);
         }
 
-        .chapter-img {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-            border-radius: 16px;
-            margin: 12px 0 16px 0;
-            border: 2px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-
         .chapter-img-contain {
             width: 100%;
             max-height: 280px;
@@ -262,11 +252,6 @@
 
         .badge-challenge {
             background: linear-gradient(135deg, #8E24AA 0%, #7B1FA2 100%);
-            color: white;
-        }
-
-        .badge-pronunciation {
-            background: linear-gradient(135deg, #00897B 0%, #00695C 100%);
             color: white;
         }
 
@@ -740,8 +725,6 @@
                     <span class="badge">🌎 Chapter 1</span>
                     <h2>About Me</h2>
 
-                    <img src="welcome-banner.png" alt="About Me Intro" class="chapter-img">
-
                     <p>Hello! My name is <strong>Sara Reis</strong>. I am <strong>24 years old</strong> and I live in Blumenau, Brazil.</p>
 
                     <div class="pattern-box">
@@ -794,7 +777,7 @@
 
                     <div class="speaking-challenge-box">
                         <header>🏆 Mini Challenge — Speak Up!</header>
-                        <p style="color: var(--text-primary);">Introduce yourself to your partner in 3 complete sentences without stopping!</p>
+                        <p style="color: var(--text-primary);">Introduce yourself in 3 complete sentences without stopping! e.g Hello! My name is ___, I am __ yearls old and I live in _____</p>
                     </div>
                 </div>
             </section>
@@ -805,7 +788,7 @@
                     <span class="badge">🏡 Chapter 2</span>
                     <h2>My City — Blumenau</h2>
                     
-                    <img src="Blumenau.jpg" alt="Blumenau" class="chapter-img">
+                    <img src="Blumenau.jpg" alt="Blumenau" class="chapter-img-contain">
 
                     <p>I live in <strong>Blumenau, Santa Catarina</strong>. It is famous for Oktoberfest, German architecture, beautiful nature, and high quality of life.</p>
 
@@ -858,7 +841,7 @@
 
                     <div class="speaking-challenge-box">
                         <header>🏆 Mini Challenge — Speak Up!</header>
-                        <p style="color: var(--text-primary);">Describe your favorite spot in your city to your partner using at least 2 adjectives!</p>
+                        <p style="color: var(--text-primary);">Describe where are you from and where you live today</p>
                     </div>
                 </div>
             </section>
@@ -871,12 +854,6 @@
 
                     <img src="Familia.jpg" alt="My Family" class="chapter-img-contain">
 
-                    <div class="pronunciation-box">
-                        <header>🗣️ Pronunciation Tip</header>
-                        <div class="pronunciation-item">• Relatives → <span>/ˈrelətɪvz/</span> (não confunda com 'parentes')</div>
-                        <div class="pronunciation-item">• Parents → <span>/ˈpeərənts/</span> (significa Pai e Mãe)</div>
-                    </div>
-
                     <!-- SUBSEÇÃO 1: FAMILY MEMBERS -->
                     <div class="section-box">
                         <h3 style="color: var(--primary);">👨‍👩‍👧‍👦 1. Family Members</h3>
@@ -886,18 +863,34 @@
                                 <div class="back">Pais (Mãe e Pai)</div>
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">👥 Relatives</div>
-                                <div class="back">Parentes</div>
+                                <div class="front">👨‍👩‍👧 Father / Mother</div>
+                                <div class="back">Pai / Mãe</div>
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
                                 <div class="front">👦 Siblings</div>
                                 <div class="back">Irmãos/Irmãs</div>
                             </div>
                             <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                                <div class="front">👧 Daughter / Son</div>
-                                <div class="back">Filha / Filho</div>
+                                <div class="front">👦👧 Brother / Sister</div>
+                                <div class="back">Irmão / Irmã</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👶 Son / Daughter</div>
+                                <div class="back">Filho / Filha</div>
                             </div>
                         </div>
+
+                        <!-- DICA INFORMAL -->
+                        <div class="grammar-note" style="margin-top: 12px; margin-bottom: 0;">
+                            <strong>💡 Quick Tip:</strong> Mother can be called <strong>Mom</strong>, and Father can be called <strong>Dad</strong>!
+                        </div>
+                    </div>
+
+                    <!-- PRONUNCIATION TIP REPOSICIONADA -->
+                    <div class="pronunciation-box">
+                        <header>🗣️ Pronunciation Tip</header>
+                        <div class="pronunciation-item">• Relatives → <span>/ˈrelətɪvz/</span> (não confunda com 'parentes')</div>
+                        <div class="pronunciation-item">• Parents → <span>/ˈpeərənts/</span> (significa Pai e Mãe)</div>
                     </div>
 
                     <!-- SUBSEÇÃO 2: RELATIONSHIP STATUS -->
@@ -935,6 +928,10 @@
                                 <div class="front">👰 Bride / Groom</div>
                                 <div class="back">Noiva / Noivo (no dia)</div>
                             </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👩‍❤️‍👨 Husband / Wife</div>
+                                <div class="back">Marido / Esposa</div>
+                            </div>
                         </div>
                     </div>
 
@@ -946,7 +943,7 @@
 
                     <div class="speaking-challenge-box">
                         <header>🏆 Speaking Challenge — Free Practice</header>
-                        <p style="color: var(--text-primary);">Tell your partner about your family! Try to use at least <strong>3 vocabulary words</strong> from the cards above.</p>
+                        <p style="color: var(--text-primary);">Tell about your family. Try to use at least 3 vocabulary words from the cards above e.g I am in ______, and I live with my ____ and my _____</p>
                     </div>
                 </div>
             </section>
@@ -1027,7 +1024,7 @@
 
                     <div class="speaking-challenge-box">
                         <header>🏆 Speaking Challenge — Free Practice</header>
-                        <p style="color: var(--text-primary);">Explain your main daily responsibility at work/school in 30 seconds!</p>
+                        <p style="color: var(--text-primary);">Tell where do you work and what do you do e.g I work at _____ as an ________</p>
                     </div>
                 </div>
             </section>
@@ -1038,7 +1035,7 @@
                     <span class="badge">🎨 Chapter 5</span>
                     <h2>Hobbies & Free Time</h2>
 
-                    <img src="Scooby.png" alt="Hobbies" class="chapter-img">
+                    <img src="Scooby.png" alt="Hobbies" class="chapter-img-contain">
 
                     <div class="pattern-box">
                         <header>💡 Useful Pattern (Hobbies Grammar)</header>
@@ -1077,7 +1074,7 @@
 
                     <div class="speaking-challenge-box">
                         <header>🏆 Speaking Challenge — Free Practice</header>
-                        <p style="color: var(--text-primary);">Speak for <strong>30 seconds</strong> about how often you practice your hobby!</p>
+                        <p style="color: var(--text-primary);">Tell at least 2 hobbies that you like to do e.g I really like ______ and _____</p>
                     </div>
                 </div>
             </section>
@@ -1088,7 +1085,7 @@
                     <span class="badge">⭐ Chapter 6</span>
                     <h2>Fun Facts & Favorites</h2>
 
-                    <img src="salsicha.png" alt="Fun Facts" class="chapter-img">
+                    <img src="salsicha.png" alt="Fun Facts" class="chapter-img-contain">
 
                     <div class="pronunciation-box">
                         <header>🗣️ Pronunciation Tip</header>
@@ -1151,8 +1148,6 @@
                 <div class="card">
                     <span class="badge">❓ Chapter 7</span>
                     <h2>Asking Questions in English</h2>
-
-                    <img src="welcome-banner.png" alt="Asking Questions" class="chapter-img">
 
                     <p>Para manter uma conversa fluindo, fazer perguntas é essencial! Aqui estão as principais formas de perguntar:</p>
 
