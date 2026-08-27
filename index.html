@@ -772,8 +772,8 @@
                     <p>1. What is your full name and how do you like to be called?</p>
                     <input type="text" placeholder="e.g. My name is... but you can call me..." onchange="saveAnswer('userName', this.value)">
 
-                    <p style="margin-top: 10px;">2. How old are you, and what is something great about being your age?</p>
-                    <input type="text" placeholder="e.g. I am 24 years old because..." onchange="saveAnswer('userAgeDetails', this.value)">
+                    <p style="margin-top: 10px;">2. How old are you?</p>
+                    <input type="text" placeholder="e.g. I am __ years old" onchange="saveAnswer('userAgeDetails', this.value)">
 
                     <div class="speaking-challenge-box">
                         <header>🏆 Mini Challenge — Speak Up!</header>
@@ -1019,7 +1019,7 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>1. What do you do professionally or study, and why did you choose this field?</p>
+                    <p>1. What do you do professionally or study?</p>
                     <input type="text" placeholder="e.g. I work as an analyst because I enjoy numbers..." onchange="saveAnswer('userJobDetailsWhy', this.value)">
 
                     <div class="speaking-challenge-box">
@@ -1035,7 +1035,7 @@
                     <span class="badge">🎨 Chapter 5</span>
                     <h2>Hobbies & Free Time</h2>
 
-                    <img src="Scooby.png" alt="Hobbies" class="chapter-img-contain">
+                    <img src="scooby.png" alt="Hobbies" class="chapter-img-contain">
 
                     <div class="pattern-box">
                         <header>💡 Useful Pattern (Hobbies Grammar)</header>
@@ -1069,8 +1069,8 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN</h3>
-                    <p>What is your favorite hobby and why do you like doing it?</p>
-                    <input type="text" placeholder="e.g. I really enjoy reading because it helps me relax..." onchange="saveAnswer('userHobbyWhy', this.value)">
+                    <p>What is your favorite hobby?</p>
+                    <input type="text" placeholder="e.g. I really enjoy reading." onchange="saveAnswer('userHobbyWhy', this.value)">
 
                     <div class="speaking-challenge-box">
                         <header>🏆 Speaking Challenge — Free Practice</header>
@@ -1132,16 +1132,79 @@
                         </div>
                     </div>
 
+                    <!-- POPULAR FOODS -->
+                    <div class="section-box" style="margin-top: 15px;">
+                        <h3 style="color: var(--primary);">🍕 Popular Foods</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍕 Pizza</div>
+                                <div class="back">Pizza</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍔 Hamburger</div>
+                                <div class="back">Hambúrguer</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍦 Ice Cream</div>
+                                <div class="back">Sorvete</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍣 Sushi</div>
+                                <div class="back">Sushi</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍝 Pasta</div>
+                                <div class="back">Macarronada / Massa</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🍩 Candy / Sweets</div>
+                                <div class="back">Doces</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MOVIE GENRES -->
+                    <div class="section-box" style="margin-top: 15px;">
+                        <h3 style="color: var(--primary);">🎬 Movie Genres</h3>
+                        <div class="flashcard-grid">
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">💥 Action</div>
+                                <div class="back">Ação</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">😂 Comedy</div>
+                                <div class="back">Comédia</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">👻 Horror</div>
+                                <div class="back">Terror / Horror</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🚀 Sci-Fi</div>
+                                <div class="back">Ficção Científica</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">❤️ Romance</div>
+                                <div class="back">Romance</div>
+                            </div>
+                            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                                <div class="front">🎨 Animation</div>
+                                <div class="back">Animação</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 YOUR TURN (with "Why?")</h3>
-                    <p>1. What is your favorite movie AND why do you love it?</p>
-                    <input type="text" placeholder="e.g. My favorite movie is... because..." onchange="saveAnswer('favMovieWhy', this.value)">
+                    <p>1. What is your favorite movie genre?</>
+                    <input type="text" placeholder="e.g. My favorite movie is..." onchange="saveAnswer('favMovieWhy', this.value)">
 
-                    <p style="margin-top: 10px;">2. Which season of the year do you prefer and why?</p>
-                    <input type="text" placeholder="e.g. I prefer Autumn because the weather is comfortable..." onchange="saveAnswer('favSeasonWhy', this.value)">
+                    <p style="margin-top: 10px;">2. Which season of the year do you prefer?</p>
+                    <input type="text" placeholder="e.g. I prefer ..." onchange="saveAnswer('favSeasonWhy', this.value)">
                 </div>
             </section>
+
 
             <!-- SLIDE 8: CHAPTER 7 — ASKING QUESTIONS IN ENGLISH -->
             <section class="chapter" id="chap-7">
@@ -1189,7 +1252,7 @@
                     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 18px 0;">
 
                     <h3>👉 PRACTICE</h3>
-                    <p>Create an open-ended question starting with "Why..." to ask your partner:</p>
+                    <p>Choose a partner and ask one of the questions listed above, and write down their response:</p>
                     <input type="text" placeholder="e.g. Why do you like learning English?" onchange="saveAnswer('userWhyQuestion', this.value)">
                 </div>
             </section>
@@ -1320,12 +1383,12 @@
         let talkInterval = null;
 
         const talkQuestions = [
-            "Where are you from originally and why do you like/dislike living there?",
-            "What do you do for work or study, and what is the best part of it?",
-            "Do you like traveling? What's your dream vacation and why?",
-            "Why is learning English important for your personal or professional goals?",
-            "What is your favorite movie of all time and why?",
-            "Do you enjoy reading? What book do you recommend and why?",
+            "Where are you from originally?",
+            "What do you do for work or study?",
+            "Do you like traveling?",
+            "Why is learning English important for you?",
+            "What is your favorite movie genre?",
+            "Do you enjoy reading?",
             "What do you usually do on weekends to relax?"
         ];
 
